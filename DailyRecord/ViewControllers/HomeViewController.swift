@@ -6,17 +6,19 @@
 //
 
 import UIKit
+import SwiftUI
 import Combine
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     private let viewModel = HomeViewModel()
     private let input: PassthroughSubject<HomeViewModel.Input, Never> = .init()
     private var bag = Set<AnyCancellable>()
     
-    var dataSource: UITableViewDiffableDataSource<Int, ArticlePreview>!
+    var dataSource: UICollectionViewDiffableDataSource<Int, ArticlePreview>!
+    var snapshot: NSDiffableDataSourceSnapshot<Int, ArticlePreview>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,8 @@ class HomeViewController: UIViewController {
         output.receive(on: DispatchQueue.main)
             .sink { output in
                 switch output {
+                case .setCellData:
+                    break
                 case .listOfRecordTapped:
                     print("d")
                 }
@@ -46,12 +50,19 @@ class HomeViewController: UIViewController {
     }
     
     private func setLayout() {
-        tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: "RecordCell")
-//        dataSource = UITableViewDiffableDataSource<Int, ArticlePreview>(tableView: tableView,
-//                                                                        cellProvider:
-//                                                                            { tableView, indexPath, itemIdentifier in
-//            
-//        })
+        guard let view = UIHostingController(rootView: InfoView()).view else { return }
+        
+        infoView.layer.cornerRadius = 12.0
+        infoView.clipsToBounds = true
+        
+        infoView.addSubview(view)
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.topAnchor.constraint(equalTo: infoView.topAnchor).isActive = true
+        view.leftAnchor.constraint(equalTo: infoView.leftAnchor).isActive = true
+        view.rightAnchor.constraint(equalTo: infoView.rightAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: infoView.bottomAnchor).isActive = true
     }
 }
 

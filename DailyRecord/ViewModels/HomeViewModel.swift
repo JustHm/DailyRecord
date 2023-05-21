@@ -17,14 +17,15 @@ final class HomeViewModel {
             .sink { [weak self] input in
                 switch input {
                 case .viewApear:
-                    self?.viewApear()
+                    break
                 }
             }
             .store(in: &bag)
         return output.eraseToAnyPublisher()
     }
-    private func viewApear() {
+    private func getData() {
         let list = storage.getRecordData()
+        
     }
 }
 
@@ -34,6 +35,7 @@ extension HomeViewModel {
         case viewApear
     }
     enum Output {
+        case setCellData
         case listOfRecordTapped
     }
 }

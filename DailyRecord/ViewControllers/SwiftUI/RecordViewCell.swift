@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-final class RecordTableViewCell: UITableViewCell {
+final class RecordViewCell: UITableViewCell {
     
     init(title: String, date: Date) {
         super.init(style: .default, reuseIdentifier: "RecordCell")
