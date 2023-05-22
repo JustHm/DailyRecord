@@ -69,8 +69,7 @@ class HomeViewController: UIViewController {
     typealias CellRegistration = UICollectionView.CellRegistration<RecordViewCell, ArticlePreview>
     
     private func configureDatasource() {
-//        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.backgroundColor = .clear
+        collectionView.collectionViewLayout = createLayout()
         
         let cellRegisteration = CellRegistration { cell, indexPath, itemIdentifier in
             cell.configure(title: itemIdentifier.title, date: itemIdentifier.date)
@@ -114,38 +113,36 @@ class HomeViewController: UIViewController {
         dataSource.apply(snapshot)
     }
     
-//    private func createLayout() -> UICollectionViewLayout {
-//        let sectionProvider = { /*[weak self]*/ (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-//            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+    private func createLayout() -> UICollectionViewLayout {
+        let sectionProvider = { /*[weak self]*/ (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+            let section: NSCollectionLayoutSection
+            
+//            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2.0),
+//                                                  heightDimension: .fractionalHeight(1.0))
+//            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
 //
-//            let section: NSCollectionLayoutSection
+//            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28), heightDimension: .fractionalWidth(0.2))
+//            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//            section = NSCollectionLayoutSection(group: group)
 //
-//            if sectionKind == .one {
-//                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-//                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//                item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-//
-//                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28), heightDimension: .fractionalWidth(0.2))
-//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//                section = NSCollectionLayoutSection(group: group)
-//
-//                section.interGroupSpacing = 10
-//                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-//                section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-//            } else if sectionKind == .two {
-//                var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-//                configuration.showsSeparators = true
-//                configuration.headerMode = .none
-//
-//                section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: layoutEnvironment)
-//            } else {
-//                fatalError("Unknown section!")
-//            }
-//            return section
-//        }
-//
-//        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-//    }
+//            section.interGroupSpacing = 10
+//            section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+//            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+            
+            var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+            configuration.backgroundColor = .gray
+            configuration.showsSeparators = true
+            configuration.headerMode = .none
+            section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: layoutEnvironment)
+            
+            return section
+        }
+
+        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+    }
 }
 
 extension HomeViewController {

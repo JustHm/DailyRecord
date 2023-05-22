@@ -78,16 +78,16 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yZQ-7j-rik">
-                                <rect key="frame" x="16" y="191" width="361" height="611"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WuN-jb-mOB">
-                                    <size key="itemSize" width="361" height="128"/>
+                                <rect key="frame" x="0.0" y="191" width="393" height="611"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UPE-3n-28b">
+                                    <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dwW-mW-LEY">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+                                        <rect key="frame" x="16" y="0.0" width="361" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ogl-KY-FEY">
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
@@ -102,8 +102,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WZn-cs-F5T" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="16" id="EBW-F5-KH0"/>
-                            <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="yZQ-7j-rik" secondAttribute="trailing" constant="16" id="Il8-Wy-Q7b"/>
-                            <constraint firstItem="yZQ-7j-rik" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="16" id="ROf-jP-1Hb"/>
+                            <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="yZQ-7j-rik" secondAttribute="trailing" id="Il8-Wy-Q7b"/>
+                            <constraint firstItem="yZQ-7j-rik" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" id="ROf-jP-1Hb"/>
                             <constraint firstItem="WZn-cs-F5T" firstAttribute="top" secondItem="xEl-oT-MUM" secondAttribute="top" constant="16" id="egb-oH-zwK"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="WZn-cs-F5T" secondAttribute="trailing" constant="16" id="evn-NR-1TP"/>
                             <constraint firstItem="yZQ-7j-rik" firstAttribute="top" secondItem="WZn-cs-F5T" secondAttribute="bottom" constant="16" id="hDi-PQ-FTs"/>
