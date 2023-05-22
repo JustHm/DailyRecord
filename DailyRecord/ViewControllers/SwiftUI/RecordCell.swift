@@ -21,6 +21,7 @@ struct RecordCell: View {
                 .font(.caption)
         }
         .padding()
+        .background(Color.green)
     }
 }
 
