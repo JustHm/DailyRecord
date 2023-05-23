@@ -9,7 +9,7 @@ import Foundation
 
 struct Article: Codable {
     let imagesURL: [String]
-    let title: String
     let descibe: String
     let date: Date
+    let weather: String // SF Symbols name
 }

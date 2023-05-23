@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -70,15 +71,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WZn-cs-F5T">
-                                <rect key="frame" x="16" y="75" width="361" height="100"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="tYA-Mq-V7N"/>
-                                </constraints>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yZQ-7j-rik">
-                                <rect key="frame" x="0.0" y="191" width="393" height="611"/>
+                                <rect key="frame" x="0.0" y="175.66666666666669" width="393" height="626.33333333333326"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UPE-3n-28b">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -97,22 +91,56 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="zbC-6m-TnQ">
+                                <rect key="frame" x="16" y="75" width="361" height="34.333333333333343"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-Bw-ecV">
+                                        <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePT-Kh-Fhx">
+                                        <rect key="frame" x="147.33333333333334" y="0.3333333333333286" width="66.333333333333343" height="33.666666666666664"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wtr-02-G66">
+                                        <rect key="frame" x="321.33333333333331" y="0.0" width="39.666666666666686" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVS-jp-zAO">
+                                <rect key="frame" x="330" y="125.33333333333333" width="47" height="34.333333333333329"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system">
+                                    <color key="baseForegroundColor" systemColor="tintColor"/>
+                                    <color key="baseBackgroundColor" white="1" alpha="0.79977147108843538" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xEl-oT-MUM"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="CustomBackground"/>
                         <constraints>
-                            <constraint firstItem="WZn-cs-F5T" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="16" id="EBW-F5-KH0"/>
+                            <constraint firstItem="zbC-6m-TnQ" firstAttribute="top" secondItem="xEl-oT-MUM" secondAttribute="top" constant="16" id="8hU-Ut-XJ6"/>
+                            <constraint firstItem="zbC-6m-TnQ" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="16" id="Cav-tb-IW5"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="yZQ-7j-rik" secondAttribute="trailing" id="Il8-Wy-Q7b"/>
                             <constraint firstItem="yZQ-7j-rik" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" id="ROf-jP-1Hb"/>
-                            <constraint firstItem="WZn-cs-F5T" firstAttribute="top" secondItem="xEl-oT-MUM" secondAttribute="top" constant="16" id="egb-oH-zwK"/>
-                            <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="WZn-cs-F5T" secondAttribute="trailing" constant="16" id="evn-NR-1TP"/>
-                            <constraint firstItem="yZQ-7j-rik" firstAttribute="top" secondItem="WZn-cs-F5T" secondAttribute="bottom" constant="16" id="hDi-PQ-FTs"/>
+                            <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="zbC-6m-TnQ" secondAttribute="trailing" constant="16" id="Tcj-bk-h7R"/>
+                            <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="bVS-jp-zAO" secondAttribute="trailing" constant="16" id="d68-43-WSU"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="bottom" secondItem="yZQ-7j-rik" secondAttribute="bottom" constant="16" id="nAQ-nq-5fW"/>
+                            <constraint firstItem="bVS-jp-zAO" firstAttribute="top" secondItem="zbC-6m-TnQ" secondAttribute="bottom" constant="16" id="wnk-TF-zkb"/>
+                            <constraint firstItem="yZQ-7j-rik" firstAttribute="top" secondItem="bVS-jp-zAO" secondAttribute="bottom" constant="16" id="yTP-GY-xBv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="yZQ-7j-rik" id="t9l-yH-XZu"/>
-                        <outlet property="infoView" destination="WZn-cs-F5T" id="g4e-JB-RBQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgL-Uw-qEF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -122,8 +150,17 @@
     </scenes>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="CustomBackground">
+            <color red="0.27843137254901962" green="0.45490196078431372" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

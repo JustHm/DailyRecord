@@ -19,11 +19,11 @@ class HomeViewController: UIViewController {
     
     var dataSource: UICollectionViewDiffableDataSource<Section, ArticlePreview>!
     var snapshot: NSDiffableDataSourceSnapshot<Section, ArticlePreview>!
+    typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, ArticlePreview>
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        setLayout()
         configureDatasource()
         bind()
     }
@@ -31,9 +31,10 @@ class HomeViewController: UIViewController {
     private func bind() {
         let output = viewModel.transform(input: input.eraseToAnyPublisher())
         output.receive(on: DispatchQueue.main)
-            .sink { output in
+            .sink { [weak self] output in
                 switch output {
-                case .setCellData:
+                case .setCellData(let data):
+                    self?.setDatasource(data: data)
                     break
                 case .listOfRecordTapped:
                     print("d")
@@ -42,106 +43,63 @@ class HomeViewController: UIViewController {
         input.send(.viewApear)
     }
     
+    private func setDatasource(data: [ArticlePreview]) {
+        snapshot = NSDiffableDataSourceSnapshot<Section, ArticlePreview>()
+        
+        snapshot.appendSections([.main])
+        snapshot.appendItems(data, toSection: .main)
+        dataSource.apply(snapshot)
+    }
+    
     private func setNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear")?
+                                        .withTintColor(.white, renderingMode: .alwaysOriginal),
+                                                            style: .plain,
                                                             target: self,
-                                                            action: #selector(rightBarButtonTapped))
-        navigationItem.title = "Daily Record"
-        navigationItem.largeTitleDisplayMode = .always
+                                                            action: #selector(rightBarButtonTapped)
+        )
     }
     
-    private func setLayout() {
-        guard let view = UIHostingController(rootView: InfoView()).view else { return }
+    private func createListLayout() -> UICollectionViewCompositionalLayout {
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        var separator = UIListSeparatorConfiguration(listAppearance: .plain)
         
-        infoView.layer.cornerRadius = 12.0
-        infoView.clipsToBounds = true
+        separator.color = .white
+        config.backgroundColor = .clear
+        config.separatorConfiguration = separator
         
-        infoView.addSubview(view)
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.topAnchor.constraint(equalTo: infoView.topAnchor).isActive = true
-        view.leftAnchor.constraint(equalTo: infoView.leftAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: infoView.rightAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: infoView.bottomAnchor).isActive = true
+        return UICollectionViewCompositionalLayout.list(using: config)
     }
-    
-    typealias CellRegistration = UICollectionView.CellRegistration<RecordViewCell, ArticlePreview>
     
     private func configureDatasource() {
-        collectionView.collectionViewLayout = createLayout()
+        collectionView.collectionViewLayout = createListLayout()
+        collectionView.delegate = self
         
         let cellRegisteration = CellRegistration { cell, indexPath, itemIdentifier in
-            cell.configure(title: itemIdentifier.title, date: itemIdentifier.date)
+            var configuration = cell.defaultContentConfiguration()
+            var background = UIBackgroundConfiguration.listPlainCell()
+            
+            configuration.image = UIImage(systemName: itemIdentifier.weather)?.withRenderingMode(.alwaysOriginal)
+            configuration.text = itemIdentifier.date.formatted(.iso8601)
+            configuration.textProperties.color = .white
+            
+            background.backgroundColor = .clear
+            
+            cell.accessories = [.disclosureIndicator()]
+            cell.backgroundConfiguration = background
+            cell.contentConfiguration = configuration
         }
         
         dataSource = UICollectionViewDiffableDataSource<Section, ArticlePreview>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             collectionView.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: itemIdentifier)
         })
-        
-        snapshot = NSDiffableDataSourceSnapshot<Section, ArticlePreview>()
-        let sampleData = [
-            ArticlePreview(title: "A", date: Date()),
-            ArticlePreview(title: "B", date: Date()),
-            ArticlePreview(title: "C", date: Date()),
-            ArticlePreview(title: "D", date: Date()),
-            ArticlePreview(title: "E", date: Date()),
-            ArticlePreview(title: "F", date: Date()),
-            ArticlePreview(title: "G", date: Date()),
-            ArticlePreview(title: "H", date: Date()),
-            ArticlePreview(title: "I", date: Date()),
-            ArticlePreview(title: "J", date: Date()),
-            ArticlePreview(title: "K", date: Date()),
-            ArticlePreview(title: "L", date: Date()),
-            ArticlePreview(title: "M", date: Date()),
-            ArticlePreview(title: "N", date: Date()),
-            ArticlePreview(title: "O", date: Date()),
-            ArticlePreview(title: "P", date: Date()),
-            ArticlePreview(title: "Q", date: Date()),
-            ArticlePreview(title: "R", date: Date()),
-            ArticlePreview(title: "S", date: Date()),
-            ArticlePreview(title: "T", date: Date()),
-            ArticlePreview(title: "U", date: Date()),
-            ArticlePreview(title: "V", date: Date()),
-            ArticlePreview(title: "W", date: Date()),
-            ArticlePreview(title: "X", date: Date()),
-            ArticlePreview(title: "Y", date: Date()),
-            ArticlePreview(title: "Z", date: Date())
-        ]
-        snapshot.appendSections([.main])
-        snapshot.appendItems(sampleData, toSection: .main)
-        dataSource.apply(snapshot)
     }
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let sectionProvider = { /*[weak self]*/ (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+}
 
-            let section: NSCollectionLayoutSection
-            
-//            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2.0),
-//                                                  heightDimension: .fractionalHeight(1.0))
-//            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-//
-//            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28), heightDimension: .fractionalWidth(0.2))
-//            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//            section = NSCollectionLayoutSection(group: group)
-//
-//            section.interGroupSpacing = 10
-//            section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-//            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-
-            
-            var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
-            configuration.backgroundColor = .gray
-            configuration.showsSeparators = true
-            configuration.headerMode = .none
-            section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: layoutEnvironment)
-            
-            return section
-        }
-
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = dataSource.itemIdentifier(for: indexPath)
+        print(item?.title)
     }
 }
 

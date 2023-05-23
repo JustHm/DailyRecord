@@ -10,4 +10,5 @@ import Foundation
 struct ArticlePreview: Hashable {
     let title: String
     let date: Date
+    let weather: String // SF Symbols name
 }
