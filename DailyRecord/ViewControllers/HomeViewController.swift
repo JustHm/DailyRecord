@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 class HomeViewController: UIViewController {
-    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let viewModel = HomeViewModel()
@@ -35,9 +35,6 @@ class HomeViewController: UIViewController {
                 switch output {
                 case .setCellData(let data):
                     self?.setDatasource(data: data)
-                    break
-                case .listOfRecordTapped:
-                    print("d")
                 }
             }.store(in: &bag)
         input.send(.viewApear)
@@ -51,9 +48,30 @@ class HomeViewController: UIViewController {
         dataSource.apply(snapshot)
     }
     
+    @IBAction func addDiaryButtonTapped(_ sender: UIButton) {
+        
+    }
+    @IBAction func filterRightButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func filterLeftButtonTapped(_ sender: UIButton) {
+    }
+    @objc private func rightBarButtonTapped() {
+        print("Tapped Right bar button")
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = dataSource.itemIdentifier(for: indexPath)
+        let detailView = UIHostingController(rootView: DetailView(article: Article(imagesURL: [], descibe: "a;lskdfjalsjdkljasl;dfjak;lsdjfk\nasldk;fjakl;sdjf;lajs;dfl", date: Date(), weather: "sun.max.fill")))
+        show(detailView, sender: nil)
+    }
+}
+
+extension HomeViewController {
     private func setNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear")?
-                                        .withTintColor(.white, renderingMode: .alwaysOriginal),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(rightBarButtonTapped)
@@ -93,19 +111,6 @@ class HomeViewController: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, ArticlePreview>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             collectionView.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: itemIdentifier)
         })
-    }
-}
-
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = dataSource.itemIdentifier(for: indexPath)
-        print(item?.title)
-    }
-}
-
-extension HomeViewController {
-    @objc private func rightBarButtonTapped() {
-        print("Tapped Right bar button")
     }
 }
 

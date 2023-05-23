@@ -6,7 +6,6 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,7 +49,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                        <color key="backgroundColor" name="CustomBackground"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gWB-wu-qUj" secondAttribute="trailing" constant="16" id="Q26-8B-yLb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gWB-wu-qUj" secondAttribute="bottom" constant="16" id="icF-WH-aYy"/>
@@ -100,6 +99,9 @@
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="filterLeftButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="XuF-gt-ppT"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePT-Kh-Fhx">
                                         <rect key="frame" x="147.33333333333334" y="0.3333333333333286" width="66.333333333333343" height="33.666666666666664"/>
@@ -113,6 +115,9 @@
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="filterRightButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="xkU-rN-dEe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -123,6 +128,9 @@
                                     <color key="baseForegroundColor" systemColor="tintColor"/>
                                     <color key="baseBackgroundColor" white="1" alpha="0.79977147108843538" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addDiaryButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="Fu6-Rf-o6r"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xEl-oT-MUM"/>
@@ -141,6 +149,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="yZQ-7j-rik" id="t9l-yH-XZu"/>
+                        <outlet property="filterLabel" destination="ePT-Kh-Fhx" id="O3f-o7-MR7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgL-Uw-qEF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -156,9 +165,6 @@
         <namedColor name="CustomBackground">
             <color red="0.27843137254901962" green="0.45490196078431372" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

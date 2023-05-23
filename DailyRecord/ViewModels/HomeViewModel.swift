@@ -18,7 +18,6 @@ final class HomeViewModel {
                 switch input {
                 case .viewApear:
                     self?.getData()
-                    break
                 }
             }
             .store(in: &bag)
@@ -65,6 +64,5 @@ extension HomeViewModel {
     }
     enum Output {
         case setCellData(data: [ArticlePreview])
-        case listOfRecordTapped
     }
 }

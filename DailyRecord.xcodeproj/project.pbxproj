@@ -35,6 +35,7 @@
 		2250E5DE2A16093E00D001D2 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5DD2A16093E00D001D2 /* DiaryViewController.swift */; };
 		2250E5E02A162F2100D001D2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5DF2A162F2100D001D2 /* HomeViewModel.swift */; };
 		2250E5E72A163FB100D001D2 /* ArticlePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5E62A163FB000D001D2 /* ArticlePreview.swift */; };
+		2250E5F22A1CB2CB00D001D2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5F12A1CB2CB00D001D2 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		2250E5DD2A16093E00D001D2 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		2250E5DF2A162F2100D001D2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2250E5E62A163FB000D001D2 /* ArticlePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePreview.swift; sourceTree = "<group>"; };
+		2250E5F12A1CB2CB00D001D2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 		2250E5EE2A19FA4300D001D2 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				2250E5F12A1CB2CB00D001D2 /* DetailView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				2250E5DC2A15FA3000D001D2 /* WeatherService.swift in Sources */,
 				2250E5B42A13838D00D001D2 /* AuthViewModel.swift in Sources */,
 				2250E5D02A13916F00D001D2 /* CryptoUtil.swift in Sources */,
+				2250E5F22A1CB2CB00D001D2 /* DetailView.swift in Sources */,
 				2250E5DE2A16093E00D001D2 /* DiaryViewController.swift in Sources */,
 				2250E5A02A1221CD00D001D2 /* HomeViewController.swift in Sources */,
 				2250E5B72A1383B500D001D2 /* Article.swift in Sources */,

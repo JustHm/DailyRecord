@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().tintColor = .white
         // https://sarunw.com/posts/how-to-make-transparent-navigation-bar-in-ios/
         return true
     }
