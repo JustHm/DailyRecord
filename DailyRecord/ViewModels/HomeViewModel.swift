@@ -17,6 +17,8 @@ final class HomeViewModel {
         input.receive(on: DispatchQueue.main)
             .sink { [weak self] input in
                 switch input {
+                case .addArticle(let article):
+                    self?.setData(article: article)
                 case .viewApear:
                     self?.getData()
                 case .prevFilter:
@@ -38,48 +40,23 @@ final class HomeViewModel {
         if let caculateDate = Calendar.current.date(byAdding: dateComponent, to: date, wrappingComponents: false) {
             let dateToString = caculateDate.toString(format: "yyyy.MM")
             currentDate = dateToString
-            output.send(.listFilter(date: dateToString))
+            getData()
         }
     }
     private func getData() {
         output.send(.listFilter(date: currentDate))
         Task {
             do {
-                let list = try await storage.getRecordData(date: Date().toString(format: "yyyy.MM"))
-    //            output.send(.setCellData(data: list))
+                let list = try await storage.getRecordData(date: currentDate)
+                output.send(.setCellData(data: list))
             } catch {
-                
+                output.send(.showAlert(msg: "데이터 가져오기 실패"))
             }
         }
-        let sampleData = [
-            ArticlePreview(title: "A", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "B", date: Date(), weather: "sun.max.circle.fill"),
-            ArticlePreview(title: "C", date: Date(), weather: "cloud.rain.circle.fill"),
-            ArticlePreview(title: "D", date: Date(), weather: "cloud.sun.rain.fill"),
-            ArticlePreview(title: "E", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "F", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "G", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "H", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "I", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "J", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "K", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "L", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "M", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "N", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "O", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "P", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "Q", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "R", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "S", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "T", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "U", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "V", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "W", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "X", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "Y", date: Date(), weather: "sun.max.fill"),
-            ArticlePreview(title: "Z", date: Date(), weather: "sun.max.fill")
-        ]
-        output.send(.setCellData(data: sampleData))
+    }
+    func setData(article: Article) {
+        storage.addRecordData(data: article.dictionary)
+        getData()
     }
 }
 
@@ -89,10 +66,11 @@ extension HomeViewModel {
         case viewApear
         case prevFilter
         case nextFilter
+        case addArticle(article: Article)
     }
     enum Output {
         case listFilter(date: String)
-        case setCellData(data: [ArticlePreview])
+        case setCellData(data: [Article])
         case showAlert(msg: String)
     }
 }

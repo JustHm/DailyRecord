@@ -15,9 +15,9 @@ struct DetailView: View {
                 Text(article.date)
                     .font(.title)
                     .foregroundColor(.white)
-                
-                Divider().background(.white).fixedSize()
-                
+                Spacer()
+                Divider().background(.white).frame(maxHeight: 50.0)
+                Spacer()
                 Image(systemName: article.weather)
                     .renderingMode(.original)
                     .resizable()
@@ -25,15 +25,6 @@ struct DetailView: View {
                     .frame(width: 64.0, height: 64.0)
             }
             .padding()
-
-            if !article.imagesURL.isEmpty {
-                Divider()
-                ForEach(article.imagesURL, id: \.self) { item in
-                    Image(item)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }
-            }
             
             Divider().background(.white)
             
@@ -52,6 +43,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(article: Article(imagesURL: [], text: "HI HI", date: Date().toString(), weather: "sun.max.fill"))
+        DetailView(article: Article(text: "HI HI", date: Date().toString(), weather: "sun.max.fill"))
     }
 }

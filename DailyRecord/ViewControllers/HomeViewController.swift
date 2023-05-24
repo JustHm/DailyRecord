@@ -17,9 +17,9 @@ class HomeViewController: UIViewController {
     private let input: PassthroughSubject<HomeViewModel.Input, Never> = .init()
     private var bag = Set<AnyCancellable>()
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, ArticlePreview>!
-    var snapshot: NSDiffableDataSourceSnapshot<Section, ArticlePreview>!
-    typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, ArticlePreview>
+    var dataSource: UICollectionViewDiffableDataSource<Section, Article>!
+    var snapshot: NSDiffableDataSourceSnapshot<Section, Article>!
+    typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Article>
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +37,8 @@ class HomeViewController: UIViewController {
                     self?.setDatasource(data: data)
                 case .listFilter(let date):
                     self?.setFilterLabel(date: date)
-                case .showAlert(_):
-                    break
+                case .showAlert(let msg):
+                    self?.showAlert(msg: msg)
                 }
             }.store(in: &bag)
         input.send(.viewApear)
@@ -47,22 +47,22 @@ class HomeViewController: UIViewController {
         filterLabel.text = date
     }
     
-    private func setDatasource(data: [ArticlePreview]) {
-        snapshot = NSDiffableDataSourceSnapshot<Section, ArticlePreview>()
-        
+    private func setDatasource(data: [Article]) {
+        snapshot = NSDiffableDataSourceSnapshot<Section, Article>()
         snapshot.appendSections([.main])
         snapshot.appendItems(data, toSection: .main)
         dataSource.apply(snapshot)
     }
     
     @IBAction func addDiaryButtonTapped(_ sender: UIButton) {
-        //EX) 2023.05.01
         if let lastDate = UserDefaults.standard.string(forKey: "LastAddDate") {
-            //마지막으로 추가한 날짜가 있다면 현재 날짜와 비교, 오늘 했다면 return
-            if Date().toString() == lastDate { return }
+            if Date().toString() == lastDate {
+                showAlert(msg: "이미 오늘의 기록을 완료했습니다.")
+                return
+            }
         }
-        //여기에서 add화면으로 이동
-        UserDefaults.standard.set(Date().toString(), forKey: "LastAddDate")
+        let vc = UIHostingController(rootView: AddView(input: input))
+        show(vc, sender: nil)
     }
     
     @IBAction func filterRightButtonTapped(_ sender: UIButton) {
@@ -75,19 +75,24 @@ class HomeViewController: UIViewController {
     
     @objc private func rightBarButtonTapped() {
         //show App settings view
-        
     }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = dataSource.itemIdentifier(for: indexPath)
-        let detailView = UIHostingController(rootView: DetailView(article: Article(imagesURL: [], text: "a;lskdfjalsjdkljasl;dfjak;lsdjfk\nasldk;fjakl;sdjf;lajs;dfl", date: Date().toString(), weather: "sun.max.fill")))
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        let detailView = UIHostingController(rootView: DetailView(article: item))
         show(detailView, sender: nil)
     }
 }
 
 extension HomeViewController {
+    
+    private func showAlert(msg: String) {
+        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
+        present(alert, animated: true, completion: { self.dismiss(animated: true)})
+    }
+    
     private func setNavigationBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"),
                                                             style: .plain,
@@ -116,7 +121,7 @@ extension HomeViewController {
             var background = UIBackgroundConfiguration.listPlainCell()
             
             configuration.image = UIImage(systemName: itemIdentifier.weather)?.withRenderingMode(.alwaysOriginal)
-            configuration.text = itemIdentifier.date.formatted(.iso8601)
+            configuration.text = itemIdentifier.date
             configuration.textProperties.color = .white
             
             background.backgroundColor = .clear
@@ -126,7 +131,7 @@ extension HomeViewController {
             cell.contentConfiguration = configuration
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, ArticlePreview>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Section, Article>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             collectionView.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: itemIdentifier)
         })
     }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Article: Codable {
-    let imagesURL: [String]
+struct Article: Hashable {
+//    let imagesURL: [String]
     let text: String
     let date: String // format yyyy.MM.dd
     let weather: String // SF Symbols name
@@ -18,8 +18,8 @@ struct Article: Codable {
             [
                 "date": date,
                 "weather": weather,
-                "text": text,
-                "imagesURL": imagesURL
+                "text": text
+//                "imagesURL": imagesURL
             ]
         }
     }

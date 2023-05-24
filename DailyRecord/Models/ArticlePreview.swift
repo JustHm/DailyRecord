@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ArticlePreview: Hashable {
+struct d: Hashable {
     let title: String
     let date: Date
     let weather: String // SF Symbols name
