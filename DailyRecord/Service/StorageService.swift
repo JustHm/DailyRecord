@@ -23,17 +23,29 @@ final class StorageService {
     
     func addRecordData(data: [String: Any], images: [UIImage]) {
 //        addImages(images: images)
-        storage.collection("Records").document(uid).collection("Record").addDocument(data: data)
+        storage.collection("Records").document(uid)
+            .collection(Date().toString(format: "yyyy.MM"))
+            .addDocument(data: data)
     }
     
-    func getRecordData() -> [Article] {
-//        storage.collection("record").document(uid).collection("Record").getDocuments
-            
-//            .getDocuments { snapshot, error in
-//            if let error { return }
-////            snapshot
-//        }
-        return []
+    func getRecordData(date: String) async throws -> [Article] {
+        var result: [Article] = []
+        let ref = storage.collection("Record").document(uid).collection(date)
+        let snapshot = try await ref.order(by: "timestamp", descending: true).getDocuments()
+        
+        for document in snapshot.documents {
+            if let date = document["date"] as? String,
+               let weather = document["weather"] as? String,
+               let text = document["text"] as? String
+            {
+                let data = Article(imagesURL: (document["imagesURL"] as? [String]) ?? [],
+                                   text: text,
+                                   date: date,
+                                   weather: weather)
+                result.append(data)
+            }
+        }
+        return result
     }
     
     private func addImages(images: [UIImage]) async throws {

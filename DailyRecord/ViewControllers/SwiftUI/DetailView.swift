@@ -12,7 +12,7 @@ struct DetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Text(article.date, style: .date)
+                Text(article.date)
                     .font(.title)
                     .foregroundColor(.white)
                 
@@ -37,7 +37,7 @@ struct DetailView: View {
             
             Divider().background(.white)
             
-            Text(article.descibe)
+            Text(article.text)
                 .font(.body)
                 .lineSpacing(8.0)
                 .foregroundColor(.white)
@@ -52,6 +52,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(article: Article(imagesURL: [], descibe: "HI HI", date: Date(), weather: "sun.max.fill"))
+        DetailView(article: Article(imagesURL: [], text: "HI HI", date: Date().toString(), weather: "sun.max.fill"))
     }
 }

@@ -35,9 +35,16 @@ class HomeViewController: UIViewController {
                 switch output {
                 case .setCellData(let data):
                     self?.setDatasource(data: data)
+                case .listFilter(let date):
+                    self?.setFilterLabel(date: date)
+                case .showAlert(_):
+                    break
                 }
             }.store(in: &bag)
         input.send(.viewApear)
+    }
+    private func setFilterLabel(date: String) {
+        filterLabel.text = date
     }
     
     private func setDatasource(data: [ArticlePreview]) {
@@ -49,22 +56,33 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func addDiaryButtonTapped(_ sender: UIButton) {
-        
+        //EX) 2023.05.01
+        if let lastDate = UserDefaults.standard.string(forKey: "LastAddDate") {
+            //마지막으로 추가한 날짜가 있다면 현재 날짜와 비교, 오늘 했다면 return
+            if Date().toString() == lastDate { return }
+        }
+        //여기에서 add화면으로 이동
+        UserDefaults.standard.set(Date().toString(), forKey: "LastAddDate")
     }
+    
     @IBAction func filterRightButtonTapped(_ sender: UIButton) {
+        input.send(.nextFilter)
     }
     
     @IBAction func filterLeftButtonTapped(_ sender: UIButton) {
+        input.send(.prevFilter)
     }
+    
     @objc private func rightBarButtonTapped() {
-        print("Tapped Right bar button")
+        //show App settings view
+        
     }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = dataSource.itemIdentifier(for: indexPath)
-        let detailView = UIHostingController(rootView: DetailView(article: Article(imagesURL: [], descibe: "a;lskdfjalsjdkljasl;dfjak;lsdjfk\nasldk;fjakl;sdjf;lajs;dfl", date: Date(), weather: "sun.max.fill")))
+        let detailView = UIHostingController(rootView: DetailView(article: Article(imagesURL: [], text: "a;lskdfjalsjdkljasl;dfjak;lsdjfk\nasldk;fjakl;sdjf;lajs;dfl", date: Date().toString(), weather: "sun.max.fill")))
         show(detailView, sender: nil)
     }
 }

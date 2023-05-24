@@ -9,7 +9,18 @@ import Foundation
 
 struct Article: Codable {
     let imagesURL: [String]
-    let descibe: String
-    let date: Date
+    let text: String
+    let date: String // format yyyy.MM.dd
     let weather: String // SF Symbols name
+    
+    var dictionary: [String: Any] {
+        get {
+            [
+                "date": date,
+                "weather": weather,
+                "text": text,
+                "imagesURL": imagesURL
+            ]
+        }
+    }
 }
