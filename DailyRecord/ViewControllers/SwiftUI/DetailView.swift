@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct DetailView: View {
     let article: Article
+    let input: PassthroughSubject<HomeViewModel.Input, Never>
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -47,7 +51,8 @@ struct DetailView: View {
                     }
 
                     Button(role: .destructive) {
-                        print("dd")
+                        input.send(.deleteArticle(article: article))
+                        dismiss()
                     } label: {
                         Label("Delete", systemImage: "trash")
                     }
@@ -66,6 +71,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(article: Article(text: "HI HI", date: Date().toString(), weather: "sun.max.fill"))
+        DetailView(article: Article(documentID: nil,text: "HI HI", date: Date().toString(), weather: "sun.max.fill"), input: .init())
     }
 }

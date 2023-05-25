@@ -65,7 +65,8 @@ struct AddView: View {
                 Image(systemName: "plus")
                     .foregroundColor(.white)
                     .onTapGesture {
-                        let data = Article(text: text,
+                        let data = Article(documentID: nil,
+                                           text: text,
                                            date: Date().toString(),
                                            weather: weather)
                         input.send(.addArticle(article: data))

@@ -27,8 +27,14 @@ final class StorageService {
             .addDocument(data: data)
     }
     
-    func updateRecordData(data: [String: Any]) {
-
+    func updateRecordData(dateWithoutDay: String, documentID: String, data: [String: Any]) {
+        let ref = storage.collection("Records").document(uid).collection(dateWithoutDay).document(documentID)
+        ref.updateData(data)
+    }
+    
+    func deleteRecordData(dateWithoutDay: String, documentID: String) async throws {
+        let ref = storage.collection("Records").document(uid).collection(dateWithoutDay).document(documentID)
+        try await ref.delete()
     }
     
     func getRecordData(date: String, descending: Bool) async throws -> [Article] {
@@ -41,7 +47,9 @@ final class StorageService {
                let weather = document["weather"] as? String,
                let text = document["text"] as? String
             {
-                let data = Article(text: text,
+                
+                let data = Article(documentID: document.documentID,
+                                   text: text,
                                    date: date,
                                    weather: weather)
                 result.append(data)

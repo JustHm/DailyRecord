@@ -36,16 +36,8 @@ struct SettingsView: View {
             }
             .listRowBackground(Color.white)
             
-            SwiftUI.Section {
-                Button("Delete Account") {
-                    print("dd")
-                }
-            }
-            .foregroundColor(.red)
-            .listRowBackground(Color.white)
         }
         .scrollContentBackground(.hidden)
-        .padding()
         .background(Color("CustomBackground"))
     }
 }

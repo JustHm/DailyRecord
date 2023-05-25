@@ -18,8 +18,6 @@ final class HomeViewModel {
         input.receive(on: DispatchQueue.main)
             .sink { [weak self] input in
                 switch input {
-                case .addArticle(let article):
-                    self?.setData(article: article)
                 case .viewApear:
                     self?.getData()
                 case .prevFilter:
@@ -29,6 +27,11 @@ final class HomeViewModel {
                 case .sortFilter:
                     self?.sortFilter.toggle()
                     self?.getData()
+                //여긴 HomeVC 아님
+                case .addArticle(let article):
+                    self?.setData(article: article)
+                case .deleteArticle(let article):
+                    self?.deleteData(article: article)
                 }
             }
             .store(in: &bag)
@@ -63,6 +66,21 @@ final class HomeViewModel {
         storage.addRecordData(data: article.dictionary)
         getData()
     }
+    func deleteData(article: Article) {
+        guard let id = article.documentID,
+              let date = article.date.toDate()?.toString(format: "yyyy.MM") else {
+            output.send(.showAlert(msg: "Delete Failed"))
+            return
+        }
+        Task {
+            do {
+                try await storage.deleteRecordData(dateWithoutDay: date, documentID: id)
+                getData()
+            } catch {
+                output.send(.showAlert(msg: "Delete Failed"))
+            }
+        }
+    }
 }
 
 
@@ -71,13 +89,16 @@ extension HomeViewModel {
         case viewApear
         case prevFilter
         case nextFilter
-        case addArticle(article: Article)
         case sortFilter
+        // AddView만 사용
+        case addArticle(article: Article)
+        // DetailView만 사용
+        case deleteArticle(article: Article)
     }
     enum Output {
-        case listFilter(date: String)
         case setCellData(data: [Article])
-        case showAlert(msg: String)
+        case listFilter(date: String)
         case sortState(descending: Bool)
+        case showAlert(msg: String)
     }
 }
