@@ -38,6 +38,7 @@
 		2274C7292A1DF26600233B70 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C7282A1DF26600233B70 /* Date+.swift */; };
 		2274C72B2A1E001800233B70 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C72A2A1E001800233B70 /* String+.swift */; };
 		2274C72E2A1E05E600233B70 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C72D2A1E05E600233B70 /* AddView.swift */; };
+		2274C7302A1E18B000233B70 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C72F2A1E18B000233B70 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		2274C7282A1DF26600233B70 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		2274C72A2A1E001800233B70 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2274C72D2A1E05E600233B70 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		2274C72F2A1E18B000233B70 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			children = (
 				2250E5F12A1CB2CB00D001D2 /* DetailView.swift */,
 				2274C72D2A1E05E600233B70 /* AddView.swift */,
+				2274C72F2A1E18B000233B70 /* SettingsView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				2250E5D02A13916F00D001D2 /* CryptoUtil.swift in Sources */,
 				2250E5F22A1CB2CB00D001D2 /* DetailView.swift in Sources */,
 				2250E5DE2A16093E00D001D2 /* DiaryViewController.swift in Sources */,
+				2274C7302A1E18B000233B70 /* SettingsView.swift in Sources */,
 				2250E5A02A1221CD00D001D2 /* HomeViewController.swift in Sources */,
 				2250E5B72A1383B500D001D2 /* Article.swift in Sources */,
 				2250E5B02A13830F00D001D2 /* LoginViewContoller.swift in Sources */,

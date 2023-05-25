@@ -37,6 +37,29 @@ struct DetailView: View {
         }
         .padding()
         .background(Color("CustomBackground"))
+        .toolbar {
+            ToolbarItem {
+                Menu {
+                    Button(role: .none) {
+                        print("dd")
+                    } label: {
+                        Label("Update", systemImage: "pencil")
+                    }
+
+                    Button(role: .destructive) {
+                        print("dd")
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+
+                        
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+                .foregroundColor(.white)
+
+            }
+        }
         
     }
 }

@@ -27,10 +27,14 @@ final class StorageService {
             .addDocument(data: data)
     }
     
-    func getRecordData(date: String) async throws -> [Article] {
+    func updateRecordData(data: [String: Any]) {
+
+    }
+    
+    func getRecordData(date: String, descending: Bool) async throws -> [Article] {
         var result: [Article] = []
         let ref = storage.collection("Records").document(uid).collection(date)
-        let snapshot = try await ref.getDocuments()
+        let snapshot = try await ref.order(by: "date", descending: descending).getDocuments()
         
         for document in snapshot.documents {
             if let date = document["date"] as? String,

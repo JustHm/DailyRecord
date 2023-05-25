@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yZQ-7j-rik">
-                                <rect key="frame" x="0.0" y="175.66666666666669" width="393" height="626.33333333333326"/>
+                                <rect key="frame" x="8" y="175.66666666666669" width="377" height="626.33333333333326"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UPE-3n-28b">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -80,7 +81,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dwW-mW-LEY">
-                                        <rect key="frame" x="16" y="0.0" width="361" height="128"/>
+                                        <rect key="frame" x="8" y="0.0" width="361" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ogl-KY-FEY">
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
@@ -132,14 +133,24 @@
                                     <action selector="addDiaryButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="Fu6-Rf-o6r"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUW-ad-o5b">
+                                <rect key="frame" x="16" y="125" width="49" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="0.79977147110000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="chevron.down.square" catalog="system"/>
+                                <connections>
+                                    <action selector="addDiaryButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="jJv-qU-dC1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xEl-oT-MUM"/>
                         <color key="backgroundColor" name="CustomBackground"/>
                         <constraints>
                             <constraint firstItem="zbC-6m-TnQ" firstAttribute="top" secondItem="xEl-oT-MUM" secondAttribute="top" constant="16" id="8hU-Ut-XJ6"/>
                             <constraint firstItem="zbC-6m-TnQ" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="16" id="Cav-tb-IW5"/>
-                            <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="yZQ-7j-rik" secondAttribute="trailing" id="Il8-Wy-Q7b"/>
-                            <constraint firstItem="yZQ-7j-rik" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" id="ROf-jP-1Hb"/>
+                            <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="yZQ-7j-rik" secondAttribute="trailing" constant="8" id="Il8-Wy-Q7b"/>
+                            <constraint firstItem="yZQ-7j-rik" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="8" id="ROf-jP-1Hb"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="zbC-6m-TnQ" secondAttribute="trailing" constant="16" id="Tcj-bk-h7R"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="bVS-jp-zAO" secondAttribute="trailing" constant="16" id="d68-43-WSU"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="bottom" secondItem="yZQ-7j-rik" secondAttribute="bottom" constant="16" id="nAQ-nq-5fW"/>
@@ -150,6 +161,7 @@
                     <connections>
                         <outlet property="collectionView" destination="yZQ-7j-rik" id="t9l-yH-XZu"/>
                         <outlet property="filterLabel" destination="ePT-Kh-Fhx" id="O3f-o7-MR7"/>
+                        <outlet property="sortButton" destination="XUW-ad-o5b" id="WxX-I6-pGm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XgL-Uw-qEF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -159,6 +171,7 @@
     </scenes>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
+        <image name="chevron.down.square" catalog="system" width="128" height="114"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>

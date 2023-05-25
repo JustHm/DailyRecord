@@ -12,6 +12,7 @@ import Combine
 class HomeViewController: UIViewController {
     @IBOutlet weak var filterLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var sortButton: UIButton!
     
     private let viewModel = HomeViewModel()
     private let input: PassthroughSubject<HomeViewModel.Input, Never> = .init()
@@ -23,6 +24,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sortButton.isHidden = true
         setNavigationBar()
         configureDatasource()
         bind()
@@ -75,6 +77,8 @@ class HomeViewController: UIViewController {
     
     @objc private func rightBarButtonTapped() {
         //show App settings view
+        let vc = UIHostingController(rootView: SettingsView())
+        show(vc, sender: nil)
     }
 }
 
@@ -121,7 +125,7 @@ extension HomeViewController {
             var background = UIBackgroundConfiguration.listPlainCell()
             
             configuration.image = UIImage(systemName: itemIdentifier.weather)?.withRenderingMode(.alwaysOriginal)
-            configuration.text = itemIdentifier.date
+            configuration.text = "\(itemIdentifier.date)의 기록"
             configuration.textProperties.color = .white
             
             background.backgroundColor = .clear

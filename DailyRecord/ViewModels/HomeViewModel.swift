@@ -12,6 +12,7 @@ final class HomeViewModel {
     private let output: PassthroughSubject<Output, Never> = .init()
     private let storage = StorageService()
     private var currentDate: String = Date().toString(format: "yyyy.MM")
+    private var sortFilter: Bool = true
     
     func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
         input.receive(on: DispatchQueue.main)
@@ -25,6 +26,8 @@ final class HomeViewModel {
                     self?.setFilter(adding: -1)
                 case .nextFilter:
                     self?.setFilter(adding: 1)
+                case .sortFilter(let descending):
+                    self?.sortFilter = descending
                 }
             }
             .store(in: &bag)
@@ -47,7 +50,7 @@ final class HomeViewModel {
         output.send(.listFilter(date: currentDate))
         Task {
             do {
-                let list = try await storage.getRecordData(date: currentDate)
+                let list = try await storage.getRecordData(date: currentDate, descending: sortFilter)
                 output.send(.setCellData(data: list))
             } catch {
                 output.send(.showAlert(msg: "데이터 가져오기 실패"))
@@ -67,6 +70,7 @@ extension HomeViewModel {
         case prevFilter
         case nextFilter
         case addArticle(article: Article)
+        case sortFilter(descending: Bool)
     }
     enum Output {
         case listFilter(date: String)
