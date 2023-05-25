@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sortButton.isHidden = true
         setNavigationBar()
         configureDatasource()
         bind()
@@ -41,6 +40,11 @@ class HomeViewController: UIViewController {
                     self?.setFilterLabel(date: date)
                 case .showAlert(let msg):
                     self?.showAlert(msg: msg)
+                case .sortState(let descending):
+                    var sfSymbolName = ""
+                    if descending { sfSymbolName = "chevron.up.square"}
+                    else { sfSymbolName = "chevron.down.square" }
+                    self?.sortButton.setImage(UIImage(systemName: sfSymbolName), for: .normal)
                 }
             }.store(in: &bag)
         input.send(.viewApear)
@@ -65,6 +69,10 @@ class HomeViewController: UIViewController {
         }
         let vc = UIHostingController(rootView: AddView(input: input))
         show(vc, sender: nil)
+    }
+    
+    @IBAction func sortButtonTapped(_ sender: Any) {
+        input.send(.sortFilter)
     }
     
     @IBAction func filterRightButtonTapped(_ sender: UIButton) {

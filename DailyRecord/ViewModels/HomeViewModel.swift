@@ -26,8 +26,9 @@ final class HomeViewModel {
                     self?.setFilter(adding: -1)
                 case .nextFilter:
                     self?.setFilter(adding: 1)
-                case .sortFilter(let descending):
-                    self?.sortFilter = descending
+                case .sortFilter:
+                    self?.sortFilter.toggle()
+                    self?.getData()
                 }
             }
             .store(in: &bag)
@@ -52,6 +53,7 @@ final class HomeViewModel {
             do {
                 let list = try await storage.getRecordData(date: currentDate, descending: sortFilter)
                 output.send(.setCellData(data: list))
+                output.send(.sortState(descending: sortFilter))
             } catch {
                 output.send(.showAlert(msg: "데이터 가져오기 실패"))
             }
@@ -70,11 +72,12 @@ extension HomeViewModel {
         case prevFilter
         case nextFilter
         case addArticle(article: Article)
-        case sortFilter(descending: Bool)
+        case sortFilter
     }
     enum Output {
         case listFilter(date: String)
         case setCellData(data: [Article])
         case showAlert(msg: String)
+        case sortState(descending: Bool)
     }
 }

@@ -133,14 +133,13 @@
                                     <action selector="addDiaryButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="Fu6-Rf-o6r"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUW-ad-o5b">
-                                <rect key="frame" x="16" y="125" width="49" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUW-ad-o5b">
+                                <rect key="frame" x="24" y="125.33333333333333" width="25" height="34.333333333333329"/>
                                 <color key="tintColor" white="1" alpha="0.79977147110000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="chevron.down.square" catalog="system"/>
                                 <connections>
-                                    <action selector="addDiaryButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="jJv-qU-dC1"/>
+                                    <action selector="sortButtonTapped:" destination="3S6-TI-dBr" eventType="touchUpInside" id="Vcd-gh-G4V"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -151,8 +150,11 @@
                             <constraint firstItem="zbC-6m-TnQ" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="16" id="Cav-tb-IW5"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="yZQ-7j-rik" secondAttribute="trailing" constant="8" id="Il8-Wy-Q7b"/>
                             <constraint firstItem="yZQ-7j-rik" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="8" id="ROf-jP-1Hb"/>
+                            <constraint firstItem="XUW-ad-o5b" firstAttribute="top" secondItem="zbC-6m-TnQ" secondAttribute="bottom" constant="16" id="SRi-qJ-zeA"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="zbC-6m-TnQ" secondAttribute="trailing" constant="16" id="Tcj-bk-h7R"/>
+                            <constraint firstItem="yZQ-7j-rik" firstAttribute="top" secondItem="XUW-ad-o5b" secondAttribute="bottom" constant="16" id="Vyk-j2-jTp"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="trailing" secondItem="bVS-jp-zAO" secondAttribute="trailing" constant="16" id="d68-43-WSU"/>
+                            <constraint firstItem="XUW-ad-o5b" firstAttribute="leading" secondItem="xEl-oT-MUM" secondAttribute="leading" constant="24" id="hn5-we-W9K"/>
                             <constraint firstItem="xEl-oT-MUM" firstAttribute="bottom" secondItem="yZQ-7j-rik" secondAttribute="bottom" constant="16" id="nAQ-nq-5fW"/>
                             <constraint firstItem="bVS-jp-zAO" firstAttribute="top" secondItem="zbC-6m-TnQ" secondAttribute="bottom" constant="16" id="wnk-TF-zkb"/>
                             <constraint firstItem="yZQ-7j-rik" firstAttribute="top" secondItem="bVS-jp-zAO" secondAttribute="bottom" constant="16" id="yTP-GY-xBv"/>
