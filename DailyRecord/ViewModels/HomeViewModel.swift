@@ -89,7 +89,13 @@ final class HomeViewModel {
         Task {
             do {
                 try await storage.deleteData(dateWithoutDay: date, documentID: id)
+                // 오늘자 기록을 지웠다면 다시 추가할 수 있게
+                if article.date == Date().toString() {
+                    UserDefaults.standard.set("", forKey: "LastAddDate")
+                }
+                // reload
                 getData()
+                
             } catch {
                 output.send(.showAlert(msg: "Delete Failed"))
             }

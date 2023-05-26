@@ -99,7 +99,6 @@ extension HomeViewController: UICollectionViewDelegate {
 }
 
 extension HomeViewController {
-    
     private func showAlert(msg: String) {
         let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
         present(alert, animated: true, completion: { self.dismiss(animated: true)})
@@ -120,8 +119,20 @@ extension HomeViewController {
         separator.color = .white
         config.backgroundColor = .clear
         config.separatorConfiguration = separator
+        config.trailingSwipeActionsConfigurationProvider = makeSwipeActions
         
         return UICollectionViewCompositionalLayout.list(using: config)
+    }
+    
+    private func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
+        guard let indexPath = indexPath,
+              let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
+            self?.input.send(.deleteArticle(article: item))
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
     private func configureDatasource() {
