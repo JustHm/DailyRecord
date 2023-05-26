@@ -19,9 +19,9 @@ struct SettingsView: View {
                     NavigationLink(destination: InfoView()) {
                         Label("App Info", systemImage: "info.circle")
                     }
-                    NavigationLink(destination: {}) {
-                        Label("Recently Deleted", systemImage: "trash")
-                    }
+//                    NavigationLink(destination: {}) {
+//                        Label("Recently Deleted", systemImage: "trash")
+//                    }
                 }
             }
             .scrollContentBackground(.hidden)

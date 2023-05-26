@@ -21,23 +21,23 @@ final class StorageService {
         self.uid = Auth.auth().currentUser!.uid
     }
     
-    func addRecordData(data: [String: Any]) {
+    func addData(data: [String: Any]) {
         storage.collection("Records").document(uid)
             .collection(Date().toString(format: "yyyy.MM"))
             .addDocument(data: data)
     }
     
-    func updateRecordData(dateWithoutDay: String, documentID: String, data: [String: Any]) {
+    func updateData(dateWithoutDay: String, documentID: String, data: [String: Any]) {
         let ref = storage.collection("Records").document(uid).collection(dateWithoutDay).document(documentID)
         ref.updateData(data)
     }
     
-    func deleteRecordData(dateWithoutDay: String, documentID: String) async throws {
+    func deleteData(dateWithoutDay: String, documentID: String) async throws {
         let ref = storage.collection("Records").document(uid).collection(dateWithoutDay).document(documentID)
         try await ref.delete()
     }
     
-    func getRecordData(date: String, descending: Bool) async throws -> [Article] {
+    func getData(date: String, descending: Bool) async throws -> [Article] {
         var result: [Article] = []
         let ref = storage.collection("Records").document(uid).collection(date)
         let snapshot = try await ref.order(by: "date", descending: descending).getDocuments()

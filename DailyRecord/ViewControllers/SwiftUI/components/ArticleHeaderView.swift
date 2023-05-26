@@ -12,6 +12,7 @@ struct ArticleHeaderView: View {
     @Binding var weather: String
     var body: some View {
         HStack {
+            Spacer()
             Text(date)
                 .font(.title)
                 .foregroundColor(.white)
@@ -39,6 +40,7 @@ struct ArticleHeaderView: View {
                     .frame(width: 64.0, height: 64.0)
             }
             .foregroundColor(.white)
+            Spacer()
         }
         .padding()
         

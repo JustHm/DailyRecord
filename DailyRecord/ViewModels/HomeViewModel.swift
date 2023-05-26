@@ -21,9 +21,9 @@ final class HomeViewModel {
                 case .viewApear:
                     self?.getData()
                 case .prevFilter:
-                    self?.setFilter(adding: -1)
+                    self?.monthFilter(adding: -1)
                 case .nextFilter:
-                    self?.setFilter(adding: 1)
+                    self?.monthFilter(adding: 1)
                 case .sortFilter:
                     self?.sortFilter.toggle()
                     self?.getData()
@@ -37,7 +37,7 @@ final class HomeViewModel {
             .store(in: &bag)
         return output.eraseToAnyPublisher()
     }
-    private func setFilter(adding: Int) {
+    private func monthFilter(adding: Int) {
         guard let date = currentDate.toDate(format: "yyyy.MM") else { return }
         
         var dateComponent = DateComponents()
@@ -54,7 +54,7 @@ final class HomeViewModel {
         output.send(.listFilter(date: currentDate))
         Task {
             do {
-                let list = try await storage.getRecordData(date: currentDate, descending: sortFilter)
+                let list = try await storage.getData(date: currentDate, descending: sortFilter)
                 output.send(.setCellData(data: list))
                 output.send(.sortState(descending: sortFilter))
             } catch {
@@ -68,14 +68,15 @@ final class HomeViewModel {
     func setData(article: Article) {
         if let id = article.documentID,
            let date = article.date.toDate()?.toString(format: "yyyy.MM") {
-            storage.updateRecordData(dateWithoutDay: date,
+            storage.updateData(dateWithoutDay: date,
                                      documentID: id,
                                      data: article.dictionary
             )
         }
         else {
-            storage.addRecordData(data: article.dictionary)
+            storage.addData(data: article.dictionary)
         }
+        
         getData()
     }
     
@@ -87,7 +88,7 @@ final class HomeViewModel {
         }
         Task {
             do {
-                try await storage.deleteRecordData(dateWithoutDay: date, documentID: id)
+                try await storage.deleteData(dateWithoutDay: date, documentID: id)
                 getData()
             } catch {
                 output.send(.showAlert(msg: "Delete Failed"))
