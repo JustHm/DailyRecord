@@ -48,11 +48,27 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Record" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iwa-Oe-Mqw">
+                                <rect key="frame" x="104.66666666666667" y="418.33333333333331" width="183.66666666666663" height="40.666666666666686"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pau-oX-bAO">
+                                <rect key="frame" x="164.33333333333334" y="335.33333333333331" width="64.333333333333343" height="59"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <imageReference key="image" image="pencil" catalog="system" symbolScale="default"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="64"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="CustomBackground"/>
                         <constraints>
+                            <constraint firstItem="iwa-Oe-Mqw" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="PkN-rj-R9O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gWB-wu-qUj" secondAttribute="trailing" constant="16" id="Q26-8B-yLb"/>
+                            <constraint firstItem="iwa-Oe-Mqw" firstAttribute="top" secondItem="Pau-oX-bAO" secondAttribute="bottom" constant="16" id="c8P-yX-UC6"/>
+                            <constraint firstItem="Pau-oX-bAO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="d35-Pz-udH"/>
+                            <constraint firstItem="iwa-Oe-Mqw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="frL-pQ-xU5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gWB-wu-qUj" secondAttribute="bottom" constant="16" id="icF-WH-aYy"/>
                             <constraint firstItem="gWB-wu-qUj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="x8C-Ef-Bc2"/>
                         </constraints>
@@ -176,6 +192,7 @@
         <image name="chevron.down.square" catalog="system" width="128" height="114"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="CustomBackground">
             <color red="0.27843137254901962" green="0.45490196078431372" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
