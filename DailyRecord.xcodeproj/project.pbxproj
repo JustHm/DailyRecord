@@ -166,7 +166,7 @@
 		2250E5EE2A19FA4300D001D2 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				22DFC26E2A2097AD00B4869A /* components */,
+				22DFC26E2A2097AD00B4869A /* Components */,
 				2274C72D2A1E05E600233B70 /* AddView.swift */,
 				2250E5F12A1CB2CB00D001D2 /* DetailView.swift */,
 				2274C72F2A1E18B000233B70 /* SettingsView.swift */,
@@ -185,12 +185,12 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		22DFC26E2A2097AD00B4869A /* components */ = {
+		22DFC26E2A2097AD00B4869A /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				22DFC26C2A20971300B4869A /* ArticleHeaderView.swift */,
 			);
-			path = components;
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

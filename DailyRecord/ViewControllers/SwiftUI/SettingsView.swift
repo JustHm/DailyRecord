@@ -16,7 +16,12 @@ struct SettingsView: View {
                     .listRowBackground(Color.clear)
                 
                 SwiftUI.Section {
-                    NavigationLink("App Info", destination: InfoView())
+                    NavigationLink(destination: InfoView()) {
+                        Label("App Info", systemImage: "info.circle")
+                    }
+                    NavigationLink(destination: {}) {
+                        Label("Recently Deleted", systemImage: "trash")
+                    }
                 }
             }
             .scrollContentBackground(.hidden)

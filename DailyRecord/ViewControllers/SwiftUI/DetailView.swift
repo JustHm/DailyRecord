@@ -47,9 +47,15 @@ struct DetailView: View {
                 .foregroundColor(.white)
             }
         }
+        .onChange(of: article, perform: { newValue in
+            if Date().toString() != article.date {
+                showUpdateAlert.toggle()
+            }
+        })
         .onDisappear {
-            
-            input.send(.addArticle(article: article))
+            if Date().toString() == article.date {
+                input.send(.addArticle(article: article))
+            }
         }
     }
 }

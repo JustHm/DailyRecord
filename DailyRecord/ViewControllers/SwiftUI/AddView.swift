@@ -19,7 +19,7 @@ struct AddView: View {
             VStack(alignment: .leading) {
                 ArticleHeaderView(date: Date().toString(), weather: $weather)
                 
-                TextField("input here", text: $text, axis: .vertical)
+                TextField("Input here", text: $text, axis: .vertical)
                     .font(.body)
                     .lineSpacing(8.0)
                     .foregroundColor(.white)

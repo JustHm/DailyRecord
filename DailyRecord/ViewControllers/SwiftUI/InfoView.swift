@@ -17,20 +17,13 @@ struct InfoView: View {
             
             Divider().background(.white)
             
-            Text("\"Write once a day\"")
+            Text("\"Write about your day\"")
                 .font(.title3)
                 .foregroundColor(.white)
                 .padding(.bottom, 16.0)
             Text("""
-        asdflka;ja;lsjdfl
-        asjdlfk;ajsld;fja
-        asjdflk;kjask;djf
-        asdlfkj;ajsdf;ja;slkjfd;ajskld
-        asjldkf;adj
-        asdl;kfajs;ldjfla;sjdl;fj
-        
-        asl;dkfjla;sjfl;sajd
-        """)
+This app can only add today's record, and it can modify the record but only for today's record
+""")
             .font(.body)
             .foregroundColor(.white)
             
