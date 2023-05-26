@@ -33,7 +33,6 @@ final class LoginViewController: UIViewController {
                         return
                     }
                     self?.alert(msg: error)
-                    break
                 case .isRunningAuth(let state):
                     //activity indicator = state
                     print(state)

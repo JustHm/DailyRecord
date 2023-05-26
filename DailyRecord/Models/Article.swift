@@ -10,9 +10,9 @@ import Foundation
 struct Article: Hashable {
 //    let imagesURL: [String]
     let documentID: String?
-    let text: String
+    var text: String
     let date: String // format yyyy.MM.dd
-    let weather: String // SF Symbols name
+    var weather: String // SF Symbols name
     
     var dictionary: [String: Any] {
         get {

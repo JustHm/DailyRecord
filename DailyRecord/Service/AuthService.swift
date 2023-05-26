@@ -25,7 +25,6 @@ final class AuthService: NSObject {
     // Unhashed nonce.
     fileprivate var currentNonce: String?
     
-    
     @available(iOS 13, *)
     func startSignInWithAppleFlow() {
         let nonce = CryptoUtil().randomNonceString()
@@ -40,11 +39,13 @@ final class AuthService: NSObject {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
+    
     func startSignInWithGoogleFlow() {
         Task {
             await signInWithGoogle()
         }
     }
+    
     @MainActor
     private func signInWithGoogle() async {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }

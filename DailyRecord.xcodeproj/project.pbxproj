@@ -26,7 +26,6 @@
 		2250E5D62A13A19700D001D2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 2250E5D52A13A19700D001D2 /* GoogleSignIn */; };
 		2250E5D82A13A19700D001D2 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2250E5D72A13A19700D001D2 /* GoogleSignInSwift */; };
 		2250E5DA2A14EEB900D001D2 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5D92A14EEB900D001D2 /* StorageService.swift */; };
-		2250E5DC2A15FA3000D001D2 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5DB2A15FA3000D001D2 /* WeatherService.swift */; };
 		2250E5DE2A16093E00D001D2 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5DD2A16093E00D001D2 /* DiaryViewController.swift */; };
 		2250E5E02A162F2100D001D2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5DF2A162F2100D001D2 /* HomeViewModel.swift */; };
 		2250E5F22A1CB2CB00D001D2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5F12A1CB2CB00D001D2 /* DetailView.swift */; };
@@ -34,6 +33,8 @@
 		2274C72B2A1E001800233B70 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C72A2A1E001800233B70 /* String+.swift */; };
 		2274C72E2A1E05E600233B70 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C72D2A1E05E600233B70 /* AddView.swift */; };
 		2274C7302A1E18B000233B70 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C72F2A1E18B000233B70 /* SettingsView.swift */; };
+		22DFC26B2A1F9C4100B4869A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFC26A2A1F9C4100B4869A /* InfoView.swift */; };
+		22DFC26D2A20971300B4869A /* ArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFC26C2A20971300B4869A /* ArticleHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +54,6 @@
 		2250E5CF2A13916F00D001D2 /* CryptoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtil.swift; sourceTree = "<group>"; };
 		2250E5D22A13A13700D001D2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2250E5D92A14EEB900D001D2 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
-		2250E5DB2A15FA3000D001D2 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		2250E5DD2A16093E00D001D2 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		2250E5DF2A162F2100D001D2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2250E5F12A1CB2CB00D001D2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -61,6 +61,8 @@
 		2274C72A2A1E001800233B70 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		2274C72D2A1E05E600233B70 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		2274C72F2A1E18B000233B70 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		22DFC26A2A1F9C4100B4869A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		22DFC26C2A20971300B4869A /* ArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				2250E5CE2A138A1500D001D2 /* DailyRecord.entitlements */,
 				2250E59B2A1221CD00D001D2 /* AppDelegate.swift */,
 				2250E59D2A1221CD00D001D2 /* SceneDelegate.swift */,
+				2274C72C2A1E001C00233B70 /* Utils */,
 				2250E5D12A13A10700D001D2 /* Service */,
 				2250E5B82A1383EE00D001D2 /* Models */,
 				2250E5B52A1383A700D001D2 /* ViewModels */,
@@ -111,7 +114,6 @@
 				2250E5A62A1221CE00D001D2 /* LaunchScreen.storyboard */,
 				2250E5A92A1221CE00D001D2 /* Info.plist */,
 				2250E5B92A1387DD00D001D2 /* GoogleService-Info.plist */,
-				2274C72C2A1E001C00233B70 /* Utils */,
 			);
 			path = DailyRecord;
 			sourceTree = "<group>";
@@ -157,7 +159,6 @@
 			children = (
 				2250E5D22A13A13700D001D2 /* AuthService.swift */,
 				2250E5D92A14EEB900D001D2 /* StorageService.swift */,
-				2250E5DB2A15FA3000D001D2 /* WeatherService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -165,9 +166,11 @@
 		2250E5EE2A19FA4300D001D2 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				2250E5F12A1CB2CB00D001D2 /* DetailView.swift */,
+				22DFC26E2A2097AD00B4869A /* components */,
 				2274C72D2A1E05E600233B70 /* AddView.swift */,
+				2250E5F12A1CB2CB00D001D2 /* DetailView.swift */,
 				2274C72F2A1E18B000233B70 /* SettingsView.swift */,
+				22DFC26A2A1F9C4100B4869A /* InfoView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -180,6 +183,14 @@
 				2274C72A2A1E001800233B70 /* String+.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		22DFC26E2A2097AD00B4869A /* components */ = {
+			isa = PBXGroup;
+			children = (
+				22DFC26C2A20971300B4869A /* ArticleHeaderView.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,11 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2250E5DC2A15FA3000D001D2 /* WeatherService.swift in Sources */,
 				2250E5B42A13838D00D001D2 /* AuthViewModel.swift in Sources */,
 				2250E5D02A13916F00D001D2 /* CryptoUtil.swift in Sources */,
 				2250E5F22A1CB2CB00D001D2 /* DetailView.swift in Sources */,
 				2250E5DE2A16093E00D001D2 /* DiaryViewController.swift in Sources */,
+				22DFC26B2A1F9C4100B4869A /* InfoView.swift in Sources */,
 				2274C7302A1E18B000233B70 /* SettingsView.swift in Sources */,
 				2250E5A02A1221CD00D001D2 /* HomeViewController.swift in Sources */,
 				2250E5B72A1383B500D001D2 /* Article.swift in Sources */,
@@ -280,6 +291,7 @@
 				2250E59C2A1221CD00D001D2 /* AppDelegate.swift in Sources */,
 				2274C72B2A1E001800233B70 /* String+.swift in Sources */,
 				2250E59E2A1221CD00D001D2 /* SceneDelegate.swift in Sources */,
+				22DFC26D2A20971300B4869A /* ArticleHeaderView.swift in Sources */,
 				2274C7292A1DF26600233B70 /* Date+.swift in Sources */,
 				2250E5DA2A14EEB900D001D2 /* StorageService.swift in Sources */,
 				2250E5D32A13A13700D001D2 /* AuthService.swift in Sources */,

@@ -2,51 +2,47 @@
 //  InfoView.swift
 //  DailyRecord
 //
-//  Created by 안정흠 on 2023/05/18.
+//  Created by 안정흠 on 2023/05/25.
 //
 
 import SwiftUI
 
 struct InfoView: View {
     var body: some View {
-        HStack {
-            Image(systemName: "pencil.circle")
-                .resizable()
-                .frame(width: 64.0, height: 64.0)
-                .aspectRatio(contentMode: .fit)
+        VStack(alignment: .leading) {
+            Text("Daily Record")
+                .font(.largeTitle)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+            
+            Divider().background(.white)
+            
+            Text("\"Write once a day\"")
+                .font(.title3)
+                .foregroundColor(.white)
+                .padding(.bottom, 16.0)
+            Text("""
+        asdflka;ja;lsjdfl
+        asjdlfk;ajsld;fja
+        asjdflk;kjask;djf
+        asdlfkj;ajsdf;ja;slkjfd;ajskld
+        asjldkf;adj
+        asdl;kfajs;ldjfla;sjdl;fj
+        
+        asl;dkfjla;sjfl;sajd
+        """)
+            .font(.body)
+            .foregroundColor(.white)
             
             Spacer()
-            
-            VStack(alignment: .trailing) {
-                Text("16Days")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                
-                Text("Sience 2023.06.01")
-                    .font(.caption)
-                    .fontWeight(.light)
-                    .foregroundColor(.white)
-            }
-            
-            Spacer()
-            
-            Button {
-                print("Action")
-            } label: {
-                Label("", systemImage: "chevron.right")
-            }
-
         }
-        .frame(maxWidth: .infinity, maxHeight: 100.0)
         .padding()
-        .background(Color.green)
+        .background(Color("CustomBackground"))
     }
 }
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
         InfoView()
-            .previewLayout(.sizeThatFits)
     }
 }

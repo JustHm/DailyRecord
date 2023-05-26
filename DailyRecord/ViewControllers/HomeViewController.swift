@@ -93,7 +93,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-        let detailView = UIHostingController(rootView: DetailView(article: item, input: input))
+        let detailView = UIHostingController(rootView: DetailView(input: input, article: item))
         show(detailView, sender: nil)
     }
 }

@@ -62,10 +62,23 @@ final class HomeViewModel {
             }
         }
     }
+    
+    /// Add Article Or Update Article ( Update Trigger: document ID is not optional )
+    /// - Parameter article: article
     func setData(article: Article) {
-        storage.addRecordData(data: article.dictionary)
+        if let id = article.documentID,
+           let date = article.date.toDate()?.toString(format: "yyyy.MM") {
+            storage.updateRecordData(dateWithoutDay: date,
+                                     documentID: id,
+                                     data: article.dictionary
+            )
+        }
+        else {
+            storage.addRecordData(data: article.dictionary)
+        }
         getData()
     }
+    
     func deleteData(article: Article) {
         guard let id = article.documentID,
               let date = article.date.toDate()?.toString(format: "yyyy.MM") else {

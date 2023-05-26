@@ -9,36 +9,18 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        List {
-            SwiftUI.Section {
-                Text("Daily Record")
+            List {
+                Text("Settings")
                     .font(.largeTitle)
                     .foregroundColor(.white)
-                    .fontWeight(.bold)
-                Text("\"Write once a day\"")
-                    .foregroundColor(.white)
-            }
-            .listRowSeparatorTint(.white)
-            .listRowBackground(Color.clear)
-            
-            
-            SwiftUI.Section {
-                Button("App Info") {
-                    print("dd")
-                }
+                    .listRowBackground(Color.clear)
                 
-                Button {
-                    print("change color")
-                } label: {
-                    Text("Change background color")
+                SwiftUI.Section {
+                    NavigationLink("App Info", destination: InfoView())
                 }
-
             }
-            .listRowBackground(Color.white)
-            
-        }
-        .scrollContentBackground(.hidden)
-        .background(Color("CustomBackground"))
+            .scrollContentBackground(.hidden)
+            .background(Color("CustomBackground"))
     }
 }
 
