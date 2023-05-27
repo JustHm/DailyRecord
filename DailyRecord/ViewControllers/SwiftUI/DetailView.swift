@@ -13,19 +13,24 @@ struct DetailView: View {
     @State var article: Article
     @State var showUpdateAlert: Bool = false
     @Environment(\.dismiss) var dismiss
+    @StateObject var imageViewModel = ImageViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            ArticleHeaderView(date: article.date, weather: $article.weather)
-            
-            TextField("Input here", text: $article.text, axis: .vertical)
-                .font(.body)
-                .lineSpacing(8.0)
-                .foregroundColor(.white)
-                .padding()
-            Spacer()
+        ScrollView {
+            VStack(alignment: .leading) {
+                ArticleHeaderView(date: article.date, weather: $article.weather)
+                
+                ImagePageView(viewModel: imageViewModel)
+                
+                TextField("Input here", text: $article.text, axis: .vertical)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .font(.body)
+                    .lineSpacing(8.0)
+                    .foregroundColor(.white)
+                    .padding()
+                
+            }
         }
-        .padding()
         .background(Color("CustomBackground"))
         .alert("Failed",
                isPresented: $showUpdateAlert,
@@ -47,6 +52,9 @@ struct DetailView: View {
                 .foregroundColor(.white)
             }
         }
+        .onAppear {
+            imageViewModel.imageUrl = article.imagesURL
+        }
         .onChange(of: article, perform: { newValue in
             if Date().toString() != article.date {
                 showUpdateAlert.toggle()
@@ -62,6 +70,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(input: .init(), article: Article(documentID: nil,text: "HI HI", date: Date().toString(), weather: "sun.max.fill"))
+        DetailView(input: .init(), article: Article(documentID: nil,text: "HI HI", date: Date().toString(), weather: "sun.max.fill", imagesURL: []))
     }
 }

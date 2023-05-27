@@ -8,19 +8,19 @@
 import Foundation
 
 struct Article: Hashable {
-//    let imagesURL: [String]
     let documentID: String?
     var text: String
     let date: String // format yyyy.MM.dd
     var weather: String // SF Symbols name
+    var imagesURL: [String]
     
     var dictionary: [String: Any] {
         get {
             [
                 "date": date,
                 "weather": weather,
-                "text": text
-//                "imagesURL": imagesURL
+                "text": text,
+                "imagesURL": imagesURL
             ]
         }
     }

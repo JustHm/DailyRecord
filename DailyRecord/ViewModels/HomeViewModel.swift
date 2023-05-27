@@ -10,7 +10,7 @@ import Foundation
 final class HomeViewModel {
     private var bag = Set<AnyCancellable>()
     private let output: PassthroughSubject<Output, Never> = .init()
-    private let storage = StorageService()
+    private let firestore = FirestoreService()
     private var currentDate: String = Date().toString(format: "yyyy.MM")
     private var sortFilter: Bool = true
     
@@ -54,7 +54,7 @@ final class HomeViewModel {
         output.send(.listFilter(date: currentDate))
         Task {
             do {
-                let list = try await storage.getData(date: currentDate, descending: sortFilter)
+                let list = try await firestore.getData(date: currentDate, descending: sortFilter)
                 output.send(.setCellData(data: list))
                 output.send(.sortState(descending: sortFilter))
             } catch {
@@ -68,13 +68,13 @@ final class HomeViewModel {
     func setData(article: Article) {
         if let id = article.documentID,
            let date = article.date.toDate()?.toString(format: "yyyy.MM") {
-            storage.updateData(dateWithoutDay: date,
+            firestore.updateData(dateWithoutDay: date,
                                      documentID: id,
                                      data: article.dictionary
             )
         }
         else {
-            storage.addData(data: article.dictionary)
+            firestore.addData(data: article.dictionary)
         }
         
         getData()
@@ -88,7 +88,7 @@ final class HomeViewModel {
         }
         Task {
             do {
-                try await storage.deleteData(dateWithoutDay: date, documentID: id)
+                try await firestore.deleteData(dateWithoutDay: date, documentID: id)
                 // 오늘자 기록을 지웠다면 다시 추가할 수 있게
                 if article.date == Date().toString() {
                     UserDefaults.standard.set("", forKey: "LastAddDate")

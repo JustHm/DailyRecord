@@ -2,59 +2,60 @@
 //  StorageService.swift
 //  DailyRecord
 //
-//  Created by 안정흠 on 2023/05/17.
+//  Created by 안정흠 on 2023/05/27.
 //
-
+import SwiftUI
 import Foundation
 import FirebaseAuth
 import FirebaseStorage
-import FirebaseFirestore
-import FirebaseFirestoreSwift
-
 
 final class StorageService {
-    private let storage: Firestore = Firestore.firestore()
-    private let imageDB: Storage = Storage.storage()
-    private let uid: String
+    private let storage = Storage.storage().reference()
     
-    init() {
-        self.uid = Auth.auth().currentUser!.uid
-    }
-    
-    func addData(data: [String: Any]) {
-        storage.collection("Records").document(uid)
-            .collection(Date().toString(format: "yyyy.MM"))
-            .addDocument(data: data)
-    }
-    
-    func updateData(dateWithoutDay: String, documentID: String, data: [String: Any]) {
-        let ref = storage.collection("Records").document(uid).collection(dateWithoutDay).document(documentID)
-        ref.updateData(data)
-    }
-    
-    func deleteData(dateWithoutDay: String, documentID: String) async throws {
-        let ref = storage.collection("Records").document(uid).collection(dateWithoutDay).document(documentID)
-        try await ref.delete()
-    }
-    
-    func getData(date: String, descending: Bool) async throws -> [Article] {
-        var result: [Article] = []
-        let ref = storage.collection("Records").document(uid).collection(date)
-        let snapshot = try await ref.order(by: "date", descending: descending).getDocuments()
-        
-        for document in snapshot.documents {
-            if let date = document["date"] as? String,
-               let weather = document["weather"] as? String,
-               let text = document["text"] as? String
-            {
-                
-                let data = Article(documentID: document.documentID,
-                                   text: text,
-                                   date: date,
-                                   weather: weather)
-                result.append(data)
+    /// Upload Image Data to Firebase Storage and get downloadable URL ( Firebase Bucket URL -> DownloadURL )
+    /// - Parameter images: UIImage as Data
+    /// - Returns: Downloadable URL
+    func uploadImages(_ images: [Data]) async throws -> [String] {
+        //  image Data -> Firebase Bucket URL
+        var firebaseURL: [String] = []
+        try await withThrowingTaskGroup(of: String.self, body: { group in
+            let defaultPath = "\(Auth.auth().currentUser?.uid ?? "user")/images/\(Date().toString(format: "yyyy.MM.dd"))"
+            for item in images {
+                let ref = storage.child("\(defaultPath)/\(UUID()).png")
+                group.addTask {
+                    let metadata = try await ref.putDataAsync(item)
+                    return "gs://\(metadata.bucket)/\(metadata.path ?? "none")"
+                }
             }
-        }
-        return result
+            for try await url in group {
+                firebaseURL.append(url)
+            }
+        })
+        
+        return try await uploadTaskGroup(firebaseURL: firebaseURL)
+    }
+    
+    
+    /// Get downloadable URL ( Firebase Bucket URL -> DownloadURL )
+    /// - Parameter firebaseURL: Firebase Bucket URL
+    /// - Returns: Downloadable URL
+    private func uploadTaskGroup(firebaseURL: [String]) async throws -> [String] {
+        // Firebase Bucket URL -> HTTP URL
+        var downloadURL: [String] = []
+        try await withThrowingTaskGroup(of: URL?.self, body: { group in
+            for item in firebaseURL {
+                let ref = Storage.storage().reference(forURL: item)
+                group.addTask {
+                    return try await ref.downloadURL()
+                }
+            }
+            
+            for try await url in group {
+                guard let url else { continue }
+                downloadURL.append(url.absoluteString)
+            }
+        })
+        
+        return downloadURL
     }
 }

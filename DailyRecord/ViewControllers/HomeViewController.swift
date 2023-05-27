@@ -144,7 +144,7 @@ extension HomeViewController {
             var background = UIBackgroundConfiguration.listPlainCell()
             
             configuration.image = UIImage(systemName: itemIdentifier.weather)?.withRenderingMode(.alwaysOriginal)
-            configuration.text = "\(itemIdentifier.date)의 기록"
+            configuration.text = "Record at \(itemIdentifier.date)"
             configuration.textProperties.color = .white
             
             background.backgroundColor = .clear

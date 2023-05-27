@@ -13,11 +13,14 @@ struct AddView: View {
     let input: PassthroughSubject<HomeViewModel.Input, Never>
     @State var text: String = ""
     @State var weather: String = "sun.max.fill"
+    @StateObject var imageViewModel = ImageViewModel()
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack(alignment: .leading) {
                 ArticleHeaderView(date: Date().toString(), weather: $weather)
+                
+                ImagePageView(viewModel: imageViewModel)
                 
                 TextField("Input here", text: $text, axis: .vertical)
                     .font(.body)
@@ -37,7 +40,8 @@ struct AddView: View {
                         let data = Article(documentID: nil,
                                            text: text,
                                            date: Date().toString(),
-                                           weather: weather)
+                                           weather: weather,
+                                           imagesURL: imageViewModel.imageUrl)
                         input.send(.addArticle(article: data))
                         UserDefaults.standard.set(Date().toString(), forKey: "LastAddDate")
                         dismiss()
