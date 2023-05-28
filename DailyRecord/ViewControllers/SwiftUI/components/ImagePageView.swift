@@ -13,10 +13,11 @@ struct ImagePageView: View {
     @State private var selectedItems: [PhotosPickerItem] = []
     
     let screenWidth = UIScreen.main.bounds.size.width
+    let articleDate: String
     
     var body: some View {
         VStack(alignment: .trailing) {
-            if viewModel.imageUrl.isEmpty {
+            if articleDate == Date().toString() {
                 HStack {
                     Spacer()
                     PhotosPicker(selection: $viewModel.selectedItems,
@@ -26,7 +27,7 @@ struct ImagePageView: View {
                         Label("Add", systemImage: "photo")
                             .tint(.white)
                             .labelStyle(.iconOnly)
-                    }.padding().tint(.blue)
+                    }.padding().tint(.primary)
                 }
             }
 
@@ -55,7 +56,7 @@ struct ImagePageView: View {
 
 struct ImagePageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImagePageView(viewModel: ImageViewModel())
+        ImagePageView(viewModel: ImageViewModel(), articleDate: Date().toString())
             .background(Color("CustomBackground"))
     }
 }

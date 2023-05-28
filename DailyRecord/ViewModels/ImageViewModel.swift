@@ -7,7 +7,6 @@
 import Combine
 import SwiftUI
 import PhotosUI
-import CoreTransferable
 
 @MainActor
 final class ImageViewModel: ObservableObject {
@@ -15,12 +14,14 @@ final class ImageViewModel: ObservableObject {
     @Published var imageUrl: [String] = []
     @Published var selectedItems: [PhotosPickerItem] = [] {
         didSet {
-            state = .upload
             Task {
                 do {
-                try await self.transferable()
+                    state = .upload
+                    try await self.transferable()
+                    selectedItems = []
+                    state = .none
                 } catch {
-                    print("HM-DEBUG\(error.localizedDescription)")
+                    state = .error(msg: error.localizedDescription)
                 }
             }
         }
@@ -34,12 +35,13 @@ final class ImageViewModel: ObservableObject {
             else { continue }
             images.append(data)
         }
-        imageUrl = try await storage.uploadImages(images)
-        state = .none
+        let result = try await storage.uploadImages(images)
+        imageUrl.append(contentsOf: result)
     }
     
     enum State {
         case upload
         case none
+        case error(msg: String)
     }
 }

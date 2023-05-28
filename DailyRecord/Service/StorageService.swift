@@ -4,19 +4,15 @@
 //
 //  Created by 안정흠 on 2023/05/27.
 //
-import SwiftUI
-import Foundation
 import FirebaseAuth
 import FirebaseStorage
 
-final class StorageService {
-    private let storage = Storage.storage().reference()
-    
+struct StorageService {
     /// Upload Image Data to Firebase Storage and get downloadable URL ( Firebase Bucket URL -> DownloadURL )
     /// - Parameter images: UIImage as Data
     /// - Returns: Downloadable URL
     func uploadImages(_ images: [Data]) async throws -> [String] {
-        //  image Data -> Firebase Bucket URL
+        let storage = Storage.storage().reference()
         var firebaseURL: [String] = []
         try await withThrowingTaskGroup(of: String.self, body: { group in
             let defaultPath = "\(Auth.auth().currentUser?.uid ?? "user")/images/\(Date().toString(format: "yyyy.MM.dd"))"
@@ -31,7 +27,6 @@ final class StorageService {
                 firebaseURL.append(url)
             }
         })
-        
         return try await uploadTaskGroup(firebaseURL: firebaseURL)
     }
     
@@ -40,7 +35,6 @@ final class StorageService {
     /// - Parameter firebaseURL: Firebase Bucket URL
     /// - Returns: Downloadable URL
     private func uploadTaskGroup(firebaseURL: [String]) async throws -> [String] {
-        // Firebase Bucket URL -> HTTP URL
         var downloadURL: [String] = []
         try await withThrowingTaskGroup(of: URL?.self, body: { group in
             for item in firebaseURL {

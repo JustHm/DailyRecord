@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gWB-wu-qUj">
-                                <rect key="frame" x="16" y="717.33333333333337" width="361" height="84.666666666666629"/>
+                                <rect key="frame" x="16" y="710" width="361" height="92"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmo-yU-FZf">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="38"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign in with Apple">
                                             <imageReference key="image" image="apple.logo" catalog="system" symbolScale="default"/>
@@ -34,9 +34,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMa-Mc-9Iu">
-                                        <rect key="frame" x="0.0" y="50.333333333333258" width="361" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="54" width="361" height="38"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Sign in with Google">
+                                        <buttonConfiguration key="configuration" style="filled" image="G_Logo" title="Sign in with Google">
                                             <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -177,6 +177,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="G_Logo" width="24" height="24"/>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
         <image name="chevron.down.square" catalog="system" width="128" height="114"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>

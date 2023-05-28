@@ -8,11 +8,10 @@ import Combine
 import Foundation
 import FirebaseAuth
 
-
 final class AuthViewModel: NSObject {
     private var bag = Set<AnyCancellable>()
     private let output: PassthroughSubject<Output, Never> = .init()
-    private let authService = AuthService()
+    private let authService: AuthService = AuthService()
     
     override init() {
         super.init()
@@ -25,7 +24,6 @@ final class AuthViewModel: NSObject {
                 switch input {
                 case .viewApear:
                     self?.checkSignState()
-                    break
                 case .signInWithApple:
                     self?.authService.startSignInWithAppleFlow()
                 case .signInWithGoogle:
@@ -55,9 +53,6 @@ extension AuthViewModel: AuthDelegate {
         // Sign in with Firebase.
         Auth.auth().signIn(with: credential) {[weak self] (authResult, error) in
             if let error {
-                // Error. If error.code == .MissingOrInvalidNonce, make sure
-                // you're sending the SHA256-hashed nonce as a hex string with
-                // your request to Apple.
                 self?.output.send(.signInResult(error: error.localizedDescription))
                 return
             }
@@ -74,9 +69,6 @@ extension AuthViewModel: AuthDelegate {
         // Sign in with Firebase.
         Auth.auth().signIn(with: credential) {[weak self] (authResult, error) in
             if let error {
-                // Error. If error.code == .MissingOrInvalidNonce, make sure
-                // you're sending the SHA256-hashed nonce as a hex string with
-                // your request to Apple.
                 self?.output.send(.signInResult(error: error.localizedDescription))
                 return
             }

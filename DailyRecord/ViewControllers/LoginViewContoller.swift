@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 
+@MainActor
 final class LoginViewController: UIViewController {
     private let auth = AuthViewModel()
     private let input: PassthroughSubject<AuthViewModel.Input, Never> = .init()
@@ -28,11 +29,8 @@ final class LoginViewController: UIViewController {
                         self?.showMainViewController()
                     }
                 case .signInResult(let error):
-                    guard let error else {
-                        self?.showMainViewController()
-                        return
-                    }
-                    self?.alert(msg: error)
+                    if let error { self?.alert(msg: error) }
+                    else { self?.showMainViewController() }
                 case .isRunningAuth(let state):
                     //activity indicator = state
                     print(state)

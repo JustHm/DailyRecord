@@ -68,9 +68,8 @@ final class AuthService: NSObject {
     }
 }
 
-
-
 extension AuthService: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
@@ -95,7 +94,7 @@ extension AuthService: ASAuthorizationControllerDelegate, ASAuthorizationControl
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         delegate?.receiveCredentialInApple(credential: nil)
     }
-    @MainActor
+    
     private func getCurrentViewController() -> UIViewController? {
         //소셜 로그인 화면 띄우기 위한 VC 설정
         //'windows' was deprecated in iOS 15.0: Use UIWindowScene.windows on a relevant window scene instead

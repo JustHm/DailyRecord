@@ -10,6 +10,7 @@ import Foundation
 final class HomeViewModel {
     private var bag = Set<AnyCancellable>()
     private let output: PassthroughSubject<Output, Never> = .init()
+    
     private let firestore = FirestoreService()
     private var currentDate: String = Date().toString(format: "yyyy.MM")
     private var sortFilter: Bool = true

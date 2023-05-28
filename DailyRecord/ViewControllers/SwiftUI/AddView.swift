@@ -20,7 +20,7 @@ struct AddView: View {
             VStack(alignment: .leading) {
                 ArticleHeaderView(date: Date().toString(), weather: $weather)
                 
-                ImagePageView(viewModel: imageViewModel)
+                ImagePageView(viewModel: imageViewModel, articleDate: Date().toString())
                 
                 TextField("Input here", text: $text, axis: .vertical)
                     .font(.body)

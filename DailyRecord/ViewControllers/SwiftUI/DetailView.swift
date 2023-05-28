@@ -20,10 +20,10 @@ struct DetailView: View {
             VStack(alignment: .leading) {
                 ArticleHeaderView(date: article.date, weather: $article.weather)
                 
-                ImagePageView(viewModel: imageViewModel)
+                ImagePageView(viewModel: imageViewModel, articleDate: article.date)
                 
                 TextField("Input here", text: $article.text, axis: .vertical)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity, minHeight: 200.0 , maxHeight: .infinity)
                     .font(.body)
                     .lineSpacing(8.0)
                     .foregroundColor(.white)
@@ -62,6 +62,7 @@ struct DetailView: View {
         })
         .onDisappear {
             if Date().toString() == article.date {
+                article.imagesURL = imageViewModel.imageUrl
                 input.send(.addArticle(article: article))
             }
         }
