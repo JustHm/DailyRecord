@@ -63,7 +63,7 @@ class HomeViewController: UIViewController {
     @IBAction func addDiaryButtonTapped(_ sender: UIButton) {
         if let lastDate = UserDefaults.standard.string(forKey: "LastAddDate") {
             if Date().toString() == lastDate {
-                showAlert(msg: "이미 오늘의 기록을 완료했습니다.")
+                showAlert(msg: "You have already completed the record ")
                 return
             }
         }
