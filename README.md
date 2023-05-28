@@ -18,6 +18,7 @@
 ## Library
 - Firebase Auth
 - Firebase Firestore
+- Firebase Storage
 
 ## Preview
 | Login | Home | Detail |
