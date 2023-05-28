@@ -8,7 +8,6 @@
 import UIKit
 import Combine
 
-@MainActor
 final class LoginViewController: UIViewController {
     private let auth = AuthViewModel()
     private let input: PassthroughSubject<AuthViewModel.Input, Never> = .init()
