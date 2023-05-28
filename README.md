@@ -5,6 +5,8 @@
 
 당일 기록은 하루가 지나기 전 까지 이미지, 글, 날씨 변경 가능
 
+Combine을 사용해 ViewModel과 View를 바인딩 하여 MVVM 적용
+
 ## Environment
 - MVVM Architecture
 - StoryBoard + SwiftUI
