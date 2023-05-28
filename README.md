@@ -21,6 +21,10 @@
 - Firebase Storage
 
 ## Preview
+
+Login, Home View만 StoryBoard 
+Detail, Add, Setting 등 나머지는 SwiftUI View
+
 | Login | Home | Detail |
 | ------------- | ------------- | ------------- |
 | ![image](https://github.com/JustHm/DailyRecord/assets/21167914/bda909dc-f1c7-4e32-872c-dcc6a2a4852e) | ![IMG_7300](https://github.com/JustHm/DailyRecord/assets/21167914/8dc712dc-a86b-4bc5-9bd7-a09f1d711269) | ![IMG_7304](https://github.com/JustHm/DailyRecord/assets/21167914/1c6dca80-ca6d-41e8-a231-ed2aeb83cde8) |
