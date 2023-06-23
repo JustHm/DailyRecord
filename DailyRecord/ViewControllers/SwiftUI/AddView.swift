@@ -30,6 +30,11 @@ struct AddView: View {
                 Spacer()
             }
         }
+        .overlay(content: {
+            if imageViewModel.state == .upload {
+                LoadingView()
+            }
+        })
         .padding()
         .background(Color("CustomBackground"))
         .toolbar {

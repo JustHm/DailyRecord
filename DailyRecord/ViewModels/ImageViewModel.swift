@@ -7,21 +7,29 @@
 import Combine
 import SwiftUI
 import PhotosUI
+//enum에 input value가 있을 경우 비교할 땐 Equatable이 필요함
+enum StorageState: Equatable {
+    case upload
+    case none
+    case error(msg: String)
+}
 
 @MainActor
 final class ImageViewModel: ObservableObject {
-    @Published var state: State = .upload
+    @Published var state: StorageState = .none
     @Published var imageUrl: [String] = []
     @Published var selectedItems: [PhotosPickerItem] = [] {
         didSet {
             Task {
-                do {
-                    state = .upload
-                    try await self.transferable()
-                    selectedItems = []
-                    state = .none
-                } catch {
-                    state = .error(msg: error.localizedDescription)
+                if !selectedItems.isEmpty {
+                    do {
+                        state = .upload
+                        try await self.transferable()
+                        selectedItems = []
+                        state = .none
+                    } catch {
+                        state = .error(msg: error.localizedDescription)
+                    }
                 }
             }
         }
@@ -37,11 +45,5 @@ final class ImageViewModel: ObservableObject {
         }
         let result = try await storage.uploadImages(images)
         imageUrl.append(contentsOf: result)
-    }
-    
-    enum State {
-        case upload
-        case none
-        case error(msg: String)
     }
 }

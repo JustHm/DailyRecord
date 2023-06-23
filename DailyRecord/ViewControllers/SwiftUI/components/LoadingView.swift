@@ -9,13 +9,17 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
+        GeometryReader { proxy in
+            ZStack(alignment: .center) {
+                VStack(alignment: .center) {
+                    Spacer()
+                    Rectangle()
+                        .frame(width: 64.0, height: 64.0)
+                    Spacer()
+                }
+                .frame(width: proxy.size.width, height: proxy.size.height)
             }
-            Spacer()
         }
-        .background(.green)
     }
 }
 

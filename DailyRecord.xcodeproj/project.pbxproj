@@ -26,7 +26,6 @@
 		2250E5D62A13A19700D001D2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 2250E5D52A13A19700D001D2 /* GoogleSignIn */; };
 		2250E5D82A13A19700D001D2 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2250E5D72A13A19700D001D2 /* GoogleSignInSwift */; };
 		2250E5DA2A14EEB900D001D2 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5D92A14EEB900D001D2 /* FirestoreService.swift */; };
-		2250E5DE2A16093E00D001D2 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5DD2A16093E00D001D2 /* DiaryViewController.swift */; };
 		2250E5E02A162F2100D001D2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5DF2A162F2100D001D2 /* HomeViewModel.swift */; };
 		2250E5F22A1CB2CB00D001D2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250E5F12A1CB2CB00D001D2 /* DetailView.swift */; };
 		2274C7292A1DF26600233B70 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2274C7282A1DF26600233B70 /* Date+.swift */; };
@@ -58,7 +57,6 @@
 		2250E5CF2A13916F00D001D2 /* CryptoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtil.swift; sourceTree = "<group>"; };
 		2250E5D22A13A13700D001D2 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		2250E5D92A14EEB900D001D2 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
-		2250E5DD2A16093E00D001D2 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		2250E5DF2A162F2100D001D2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2250E5F12A1CB2CB00D001D2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2274C7282A1DF26600233B70 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 				2250E5EE2A19FA4300D001D2 /* SwiftUI */,
 				2250E5AF2A13830F00D001D2 /* LoginViewContoller.swift */,
 				2250E59F2A1221CD00D001D2 /* HomeViewController.swift */,
-				2250E5DD2A16093E00D001D2 /* DiaryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				2250E5B42A13838D00D001D2 /* AuthViewModel.swift in Sources */,
 				2250E5D02A13916F00D001D2 /* CryptoUtil.swift in Sources */,
 				2250E5F22A1CB2CB00D001D2 /* DetailView.swift in Sources */,
-				2250E5DE2A16093E00D001D2 /* DiaryViewController.swift in Sources */,
 				22DFC26B2A1F9C4100B4869A /* InfoView.swift in Sources */,
 				2274C7302A1E18B000233B70 /* SettingsView.swift in Sources */,
 				2250E5A02A1221CD00D001D2 /* HomeViewController.swift in Sources */,

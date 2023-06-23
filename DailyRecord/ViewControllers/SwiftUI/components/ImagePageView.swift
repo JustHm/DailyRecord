@@ -35,14 +35,13 @@ struct ImagePageView: View {
                 TabView {
                     ForEach(viewModel.imageUrl, id: \.self) { url in
                         AsyncImage(url: URL(string: url)) { image in
-                            image//.scaledToFit().tag(url)
+                            image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .tag(url)
                         } placeholder: {
                             Image(systemName: "photo")
-                                .tag(url)
                         }
+                        .tag(url)
                     }
                 }
                 .frame(width: screenWidth, height: screenWidth)

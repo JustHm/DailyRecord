@@ -9,10 +9,10 @@ import SwiftUI
 import Combine
 
 struct DetailView: View {
+    @Environment(\.dismiss) var dismiss
     let input: PassthroughSubject<HomeViewModel.Input, Never>
     @State var article: Article
     @State var showUpdateAlert: Bool = false
-    @Environment(\.dismiss) var dismiss
     @StateObject var imageViewModel = ImageViewModel()
     
     var body: some View {
@@ -28,7 +28,6 @@ struct DetailView: View {
                     .lineSpacing(8.0)
                     .foregroundColor(.white)
                     .padding()
-                
             }
         }
         .background(Color("CustomBackground"))

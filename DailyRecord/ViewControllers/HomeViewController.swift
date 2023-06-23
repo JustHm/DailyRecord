@@ -127,11 +127,9 @@ extension HomeViewController {
     private func makeSwipeActions(for indexPath: IndexPath?) -> UISwipeActionsConfiguration? {
         guard let indexPath = indexPath,
               let item = dataSource.itemIdentifier(for: indexPath) else { return nil }
-        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
             self?.input.send(.deleteArticle(article: item))
         }
-        
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
@@ -153,7 +151,7 @@ extension HomeViewController {
             cell.backgroundConfiguration = background
             cell.contentConfiguration = configuration
         }
-        
+
         dataSource = UICollectionViewDiffableDataSource<Section, Article>(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             collectionView.dequeueConfiguredReusableCell(using: cellRegisteration, for: indexPath, item: itemIdentifier)
         })

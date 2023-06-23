@@ -8,6 +8,7 @@ import FirebaseAuth
 import FirebaseStorage
 
 struct StorageService {
+    
     /// Upload Image Data to Firebase Storage and get downloadable URL ( Firebase Bucket URL -> DownloadURL )
     /// - Parameter images: UIImage as Data
     /// - Returns: Downloadable URL
