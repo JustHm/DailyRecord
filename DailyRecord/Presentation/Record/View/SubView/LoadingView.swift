@@ -8,25 +8,16 @@
 import SwiftUI
 
 struct LoadingView: View {
-    @State private var isRotating = 0.0
-    
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .center) {
                 VStack(alignment: .center) {
                     Spacer()
-                    Image(systemName: "gear")
-                        .font(.system(size: 64.0))
-                        .rotationEffect(.degrees(isRotating))
+                    Rectangle()
+                        .frame(width: 64.0, height: 64.0)
                     Spacer()
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height)
-            }
-        }
-        .onAppear {
-            withAnimation(.linear(duration: 1)
-                    .speed(0.1).repeatForever(autoreverses: true)) {
-                isRotating = 360.0
             }
         }
     }

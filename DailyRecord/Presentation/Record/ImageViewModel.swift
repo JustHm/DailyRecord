@@ -28,8 +28,7 @@ final class ImageViewModel: ObservableObject {
                         selectedItems = []
                         state = .none
                     } catch {
-                        state = .none
-//                        state = .error(msg: error.localizedDescription)
+                        state = .error(msg: error.localizedDescription)
                     }
                 }
             }
