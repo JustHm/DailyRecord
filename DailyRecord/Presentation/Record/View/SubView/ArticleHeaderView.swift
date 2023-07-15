@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ArticleHeaderView: View {
     let date: String
-    @Binding var weather: String
+    @Binding var weather: WeatherSymbol
     var body: some View {
         VStack {
             HStack {
@@ -22,19 +22,13 @@ struct ArticleHeaderView: View {
                 Spacer()
                 Menu {
                     Picker(selection: $weather, label: Text("Sorting options")) {
-                        Label("맑음", systemImage: "sun.max.fill")
-                            .tag("sun.max.fill")
-                        Label("조금흐림", systemImage: "cloud.sun.fill")
-                            .tag("cloud.sun.fill")
-                        Label("흐림", systemImage: "smoke.fill")
-                            .tag("smoke.fill")
-                        Label("비", systemImage: "cloud.rain.fill")
-                            .tag("cloud.rain.fill")
-                        Label("눈", systemImage: "cloud.snow.fill")
-                            .tag("cloud.snow.fill")
+                        ForEach(WeatherSymbol.allCases, id: \.rawValue) { weather in
+                            Label(weather.name, systemImage: weather.rawValue)
+                                .tag(weather.name)
+                        }
                     }
                 } label: {
-                    Image(systemName: weather)
+                    Image(systemName: weather.rawValue)
                         .renderingMode(.original)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -50,7 +44,7 @@ struct ArticleHeaderView: View {
 
 struct ArticleHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        ArticleHeaderView(date: Date().toString(), weather: .constant("sun.max.fill"))
+        ArticleHeaderView(date: Date().toString(), weather: .constant(WeatherSymbol.cloudy))
             .background(Color("CustomBackground"))
     }
 }

@@ -1,29 +1,28 @@
 //
-//  AuthService.swift
+//  AppleAuthService.swift
 //  DailyRecord
 //
-//  Created by 안정흠 on 2023/05/16.
+//  Created by 안정흠 on 2023/07/15.
 //
+
 import Foundation
-import FirebaseCore
 import FirebaseAuth
-import GoogleSignIn
-import GoogleSignInSwift
 import AuthenticationServices
 
-protocol AuthDelegate {
+protocol AppleAuthDelegate {
     func receiveCredentialInApple(credential: OAuthCredential?)
     func receiveCredentialInGoogle(credential: AuthCredential?)
 }
 
-enum AuthProvider {
-    case apple, google
+protocol AppleAuthService: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    var currentNonce: String? { get set }
+    var delegate: AuthDelegate? { get set }
+    func startSignInWithAppleFlow()
 }
 
-final class AuthService: NSObject {
+final class DefaultAppleAuthService: NSObject, AppleAuthService {
     var delegate: AuthDelegate?
-    // Unhashed nonce.
-    fileprivate var currentNonce: String?
+    var currentNonce: String?
     
     @available(iOS 13, *)
     func startSignInWithAppleFlow() {
@@ -39,37 +38,10 @@ final class AuthService: NSObject {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
-    
-    func startSignInWithGoogleFlow() {
-        Task {
-            await signInWithGoogle()
-        }
-    }
-    
-    @MainActor
-    private func signInWithGoogle() async {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        let config = GIDConfiguration(clientID: clientID)
-        GIDSignIn.sharedInstance.configuration = config
-        //구글 로그인 실행
-        do {
-            guard let viewController = getCurrentViewController() else { return }
-            let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: viewController)
-            let user = userAuthentication.user
-            guard let idToken = user.idToken else { return }
-            let accessToken = user.accessToken
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
-                                                           accessToken: accessToken.tokenString)
-            delegate?.receiveCredentialInGoogle(credential: credential)
-        } catch {
-            print(error.localizedDescription)
-            delegate?.receiveCredentialInGoogle(credential: nil)
-        }
-    }
+
 }
 
-extension AuthService: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
-    
+extension DefaultAppleAuthService: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {

@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sortButton: UIButton!
     
-    private let viewModel = HomeViewModel()
+    private var viewModel: HomeViewModel!
     private let input: PassthroughSubject<HomeViewModel.Input, Never> = .init()
     private var bag = Set<AnyCancellable>()
     
@@ -22,12 +22,24 @@ class HomeViewController: UIViewController {
     var snapshot: NSDiffableDataSourceSnapshot<Section, Article>!
     typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Article>
     
+    static func create(
+        with viewModel: HomeViewModel
+    ) -> UIViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let view = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController {
+            view.viewModel = viewModel
+            return view
+        }
+        return UIViewController()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
         configureDatasource()
         bind()
     }
+    
     
     private func bind() {
         let output = viewModel.transform(input: input.eraseToAnyPublisher())
@@ -91,11 +103,11 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-        let detailView = UIHostingController(rootView: DetailView(input: input, article: item))
-        show(detailView, sender: nil)
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+//        let detailView = UIHostingController(rootView: DetailView(input: input, article: item))
+//        show(detailView, sender: nil)
+//    }
 }
 
 extension HomeViewController {
@@ -141,7 +153,9 @@ extension HomeViewController {
             var configuration = cell.defaultContentConfiguration()
             var background = UIBackgroundConfiguration.listPlainCell()
             
-            configuration.image = UIImage(systemName: itemIdentifier.weather)?.withRenderingMode(.alwaysOriginal)
+            configuration.image = UIImage(
+                systemName: itemIdentifier.weather.rawValue
+            )?.withRenderingMode(.alwaysOriginal)
             configuration.text = "Record at \(itemIdentifier.date)"
             configuration.textProperties.color = .white
             

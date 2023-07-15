@@ -4,14 +4,19 @@
 //
 //  Created by 안정흠 on 2023/05/27.
 //
+import Foundation
 import FirebaseAuth
 import FirebaseStorage
 
-struct StorageService {
-    
+protocol ImageStorage {
     /// Upload Image Data to Firebase Storage and get downloadable URL ( Firebase Bucket URL -> DownloadURL )
     /// - Parameter images: UIImage as Data
     /// - Returns: Downloadable URL
+    func uploadImages(_ images: [Data]) async throws -> [String]
+}
+
+final class DefaultImageStorage: ImageStorage {
+    
     func uploadImages(_ images: [Data]) async throws -> [String] {
         let storage = Storage.storage().reference()
         var firebaseURL: [String] = []

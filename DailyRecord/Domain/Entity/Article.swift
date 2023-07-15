@@ -11,14 +11,14 @@ struct Article: Hashable {
     let documentID: String?
     var text: String
     let date: String // format yyyy.MM.dd
-    var weather: String // SF Symbols name
+    var weather: WeatherSymbol // SF Symbols name
     var imagesURL: [String]
     
     var dictionary: [String: Any] {
         get {
             [
                 "date": date,
-                "weather": weather,
+                "weather": weather.rawValue,
                 "text": text,
                 "imagesURL": imagesURL
             ]
