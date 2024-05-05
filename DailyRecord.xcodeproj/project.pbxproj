@@ -35,8 +35,6 @@
 		22D693892A5BC59800830C8C /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D693882A5BC59800830C8C /* ArticleRepository.swift */; };
 		22D6938B2A5C3D2B00830C8C /* WeatherSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6938A2A5C3D2B00830C8C /* WeatherSymbol.swift */; };
 		22D6938D2A5E94CC00830C8C /* DefaultArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6938C2A5E94CC00830C8C /* DefaultArticleRepository.swift */; };
-		22D693902A5EE05900830C8C /* AuthUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D6938F2A5EE05900830C8C /* AuthUseCase.swift */; };
-		22D693922A5EE26D00830C8C /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D693912A5EE26D00830C8C /* AuthRepository.swift */; };
 		22DFC26B2A1F9C4100B4869A /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFC26A2A1F9C4100B4869A /* InfoView.swift */; };
 		22DFC26D2A20971300B4869A /* ArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFC26C2A20971300B4869A /* ArticleHeaderView.swift */; };
 		22DFC2702A20B36400B4869A /* ImagePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFC26F2A20B36400B4869A /* ImagePageView.swift */; };
@@ -45,7 +43,6 @@
 		22DFC2B12A22130E00B4869A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DFC2B02A22130E00B4869A /* LoadingView.swift */; };
 		22FC5FA32A618F5300AD4FD8 /* StorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC5FA22A618F5300AD4FD8 /* StorageRepository.swift */; };
 		22FC5FA52A618F5B00AD4FD8 /* StorageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC5FA42A618F5B00AD4FD8 /* StorageUseCase.swift */; };
-		22FC5FA72A61902000AD4FD8 /* DefaultAuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC5FA62A61902000AD4FD8 /* DefaultAuthRepository.swift */; };
 		22FC5FA92A62850100AD4FD8 /* GoogleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC5FA82A62850100AD4FD8 /* GoogleAuthService.swift */; };
 		22FC5FAB2A62869A00AD4FD8 /* AppleAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FC5FAA2A62869A00AD4FD8 /* AppleAuthService.swift */; };
 /* End PBXBuildFile section */
@@ -76,8 +73,6 @@
 		22D693882A5BC59800830C8C /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
 		22D6938A2A5C3D2B00830C8C /* WeatherSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSymbol.swift; sourceTree = "<group>"; };
 		22D6938C2A5E94CC00830C8C /* DefaultArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultArticleRepository.swift; sourceTree = "<group>"; };
-		22D6938F2A5EE05900830C8C /* AuthUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUseCase.swift; sourceTree = "<group>"; };
-		22D693912A5EE26D00830C8C /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		22DFC26A2A1F9C4100B4869A /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		22DFC26C2A20971300B4869A /* ArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHeaderView.swift; sourceTree = "<group>"; };
 		22DFC26F2A20B36400B4869A /* ImagePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageView.swift; sourceTree = "<group>"; };
@@ -86,7 +81,6 @@
 		22DFC2B02A22130E00B4869A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		22FC5FA22A618F5300AD4FD8 /* StorageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRepository.swift; sourceTree = "<group>"; };
 		22FC5FA42A618F5B00AD4FD8 /* StorageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageUseCase.swift; sourceTree = "<group>"; };
-		22FC5FA62A61902000AD4FD8 /* DefaultAuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAuthRepository.swift; sourceTree = "<group>"; };
 		22FC5FA82A62850100AD4FD8 /* GoogleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthService.swift; sourceTree = "<group>"; };
 		22FC5FAA2A62869A00AD4FD8 /* AppleAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				22D693852A5B9ADC00830C8C /* ArticleUseCase.swift */,
-				22D6938F2A5EE05900830C8C /* AuthUseCase.swift */,
 				22FC5FA42A618F5B00AD4FD8 /* StorageUseCase.swift */,
 			);
 			path = Usecase;
@@ -247,7 +240,6 @@
 				223830CE2A56992B001C9349 /* Info */,
 				223830CA2A5693E8001C9349 /* Home */,
 				223830C92A5693CC001C9349 /* Login */,
-				2250E5EE2A19FA4300D001D2 /* SwiftUI */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -281,13 +273,6 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		2250E5EE2A19FA4300D001D2 /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SwiftUI;
-			sourceTree = "<group>";
-		};
 		2274C72C2A1E001C00233B70 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				22D693882A5BC59800830C8C /* ArticleRepository.swift */,
-				22D693912A5EE26D00830C8C /* AuthRepository.swift */,
 				22FC5FA22A618F5300AD4FD8 /* StorageRepository.swift */,
 			);
 			path = Repository;
@@ -312,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				22D6938C2A5E94CC00830C8C /* DefaultArticleRepository.swift */,
-				22FC5FA62A61902000AD4FD8 /* DefaultAuthRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -436,16 +419,13 @@
 				2250E5B02A13830F00D001D2 /* LoginViewContoller.swift in Sources */,
 				2274C72E2A1E05E600233B70 /* AddView.swift in Sources */,
 				2250E5E02A162F2100D001D2 /* HomeViewModel.swift in Sources */,
-				22D693902A5EE05900830C8C /* AuthUseCase.swift in Sources */,
 				22D6938B2A5C3D2B00830C8C /* WeatherSymbol.swift in Sources */,
-				22D693922A5EE26D00830C8C /* AuthRepository.swift in Sources */,
 				2250E59C2A1221CD00D001D2 /* AppDelegate.swift in Sources */,
 				22FC5FA92A62850100AD4FD8 /* GoogleAuthService.swift in Sources */,
 				2274C72B2A1E001800233B70 /* String+.swift in Sources */,
 				2250E59E2A1221CD00D001D2 /* SceneDelegate.swift in Sources */,
 				22DFC26D2A20971300B4869A /* ArticleHeaderView.swift in Sources */,
 				22D693892A5BC59800830C8C /* ArticleRepository.swift in Sources */,
-				22FC5FA72A61902000AD4FD8 /* DefaultAuthRepository.swift in Sources */,
 				22D693862A5B9ADC00830C8C /* ArticleUseCase.swift in Sources */,
 				22DFC2B12A22130E00B4869A /* LoadingView.swift in Sources */,
 				2274C7292A1DF26600233B70 /* Date+.swift in Sources */,

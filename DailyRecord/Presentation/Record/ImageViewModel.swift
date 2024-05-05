@@ -34,7 +34,7 @@ final class ImageViewModel: ObservableObject {
             }
         }
     }
-    private let storage = StorageService()
+    private let storage = DefaultImageStorage()
     
     func transferable() async throws {
         var images: [Data] = []

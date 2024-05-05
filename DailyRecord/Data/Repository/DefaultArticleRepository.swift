@@ -20,7 +20,8 @@ final class DefaultArticleRepository {
 extension DefaultArticleRepository: ArticleRepository {
     func fetchData(date: String, descending: Bool) -> Future<[Article], Error> {
         return Future<[Article], Error> { [weak self] promise in
-            let a = self?.descending
+            
+//            let a = self?.descending
 //            Task { [data, descending] in
 //                try await firestore.fetchData(date: data, descending: descending)
 //            }

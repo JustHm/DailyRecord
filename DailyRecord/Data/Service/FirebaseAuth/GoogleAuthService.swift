@@ -16,12 +16,12 @@ enum AuthError: Error {
     case success
 }
 protocol GoogleAuthService {
-    func signInWithGoogle() async throws -> Result<AuthCredential, Error>
+    func signInWithGoogle() async -> Result<AuthCredential, Error>
 }
 
 final class DefaultGoogleAuthService: GoogleAuthService {
     @MainActor //구글 로그인 실행
-    func signInWithGoogle() async throws -> Result<AuthCredential, Error> {
+    func signInWithGoogle() async -> Result<AuthCredential, Error> {
         do {
             guard let clientID = FirebaseApp.app()?.options.clientID else {
                 return .failure(AuthError.failure)

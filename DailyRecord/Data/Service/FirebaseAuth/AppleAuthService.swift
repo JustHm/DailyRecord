@@ -11,17 +11,16 @@ import AuthenticationServices
 
 protocol AppleAuthDelegate {
     func receiveCredentialInApple(credential: OAuthCredential?)
-    func receiveCredentialInGoogle(credential: AuthCredential?)
 }
 
 protocol AppleAuthService: NSObject, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     var currentNonce: String? { get set }
-    var delegate: AuthDelegate? { get set }
+    var delegate: AppleAuthDelegate? { get set }
     func startSignInWithAppleFlow()
 }
 
 final class DefaultAppleAuthService: NSObject, AppleAuthService {
-    var delegate: AuthDelegate?
+    var delegate: AppleAuthDelegate?
     var currentNonce: String?
     
     @available(iOS 13, *)

@@ -32,7 +32,7 @@ extension DefaultAuthRepository: AuthRepository {
         return Future<Bool, Error> { promise in
             Task { [weak self] in
                 do {
-                    switch try await self?.googleAuth.signInWithGoogle() {
+                    switch await self?.googleAuth.signInWithGoogle() {
                     case .success(let credential):
                         try await Auth.auth().signIn(with: credential)
                         promise(.success(true))

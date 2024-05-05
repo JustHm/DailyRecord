@@ -12,7 +12,7 @@ struct AddView: View {
     @Environment(\.dismiss) var dismiss
     let input: PassthroughSubject<HomeViewModel.Input, Never>
     @State var text: String = ""
-    @State var weather: String = "sun.max.fill"
+    @State var weather: WeatherSymbol = .sunny
     @StateObject var imageViewModel = ImageViewModel()
     
     var body: some View {

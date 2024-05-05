@@ -11,11 +11,12 @@ import FirebaseAuth
 final class AuthViewModel: NSObject {
     private var bag = Set<AnyCancellable>()
     private let output: PassthroughSubject<Output, Never> = .init()
-    private let authService: AuthService = AuthService()
+    private let appleAuthService: AppleAuthService = DefaultAppleAuthService()
+    private let googleAuthService: GoogleAuthService = DefaultGoogleAuthService()
     
     override init() {
         super.init()
-        authService.delegate = self
+        appleAuthService.delegate = self
     }
     
     func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
@@ -25,13 +26,25 @@ final class AuthViewModel: NSObject {
                 case .viewApear:
                     self?.checkSignState()
                 case .signInWithApple:
-                    self?.authService.startSignInWithAppleFlow()
+                    self?.appleAuthService.startSignInWithAppleFlow()
                 case .signInWithGoogle:
-                    self?.authService.startSignInWithGoogleFlow()
+                    self?.signInWithGoogle()
                 }
             }
             .store(in: &bag)
         return output.eraseToAnyPublisher()
+    }
+    
+    private func signInWithGoogle() {
+        Task {
+            let result = await googleAuthService.signInWithGoogle()
+            switch result {
+            case .success(let credential):
+                receiveCredentialInGoogle(credential: credential)
+            case .failure(let error):
+                output.send(.signInResult(error: error.localizedDescription))
+            }
+        }
     }
     
     private func checkSignState() {
@@ -41,10 +54,8 @@ final class AuthViewModel: NSObject {
         }
         output.send(.signState(type: .signIn))
     }
-}
-
-extension AuthViewModel: AuthDelegate {
-    func receiveCredentialInApple(credential: OAuthCredential?) {
+    
+    func receiveCredentialInGoogle(credential: AuthCredential?) {
         guard let credential else {
             output.send(.signInResult(error: "Sign in Failed"))
             return
@@ -59,8 +70,10 @@ extension AuthViewModel: AuthDelegate {
             self?.output.send(.signInResult(error: nil))
         }
     }
-    
-    func receiveCredentialInGoogle(credential: AuthCredential?) {
+}
+
+extension AuthViewModel: AppleAuthDelegate {
+    func receiveCredentialInApple(credential: OAuthCredential?) {
         guard let credential else {
             output.send(.signInResult(error: "Sign in Failed"))
             return
