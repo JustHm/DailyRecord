@@ -63,11 +63,7 @@ final class HomeViewModel {
                 let list = try await articleUseCase.fetchData(date: currentDate,
                                                               descending: sortFilter
                 )
-                list.sink { 
-                    print($0)
-                } receiveValue: { [weak self] articles in
-                    self?.output.send(.setCellData(data: articles))
-                }
+                output.send(.setCellData(data: list))
                 output.send(.sortState(descending: sortFilter))
             } catch {
                 output.send(.showAlert(msg: "데이터 가져오기 실패"))

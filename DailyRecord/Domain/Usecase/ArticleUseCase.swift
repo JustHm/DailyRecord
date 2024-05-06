@@ -8,7 +8,7 @@ import Combine
 import Foundation
 
 protocol ArticleUseCase {
-    func fetchData(date: String, descending: Bool) -> Future<[Article], Error>
+    func fetchData(date: String, descending: Bool) async throws -> [Article]
     func uploadArticle(data: [String: Any])
     func updateArticle(dateWithoutDay: String, documentID: String, data: [String: Any])
     func deleteData(dateWithoutDay: String, documentID: String) async throws
@@ -21,8 +21,8 @@ class DefaultArticleUseCase: ArticleUseCase {
         self.articleRepository = articleRepository
     }
     
-    func fetchData(date: String, descending: Bool) -> Future<[Article], Error> {
-        return articleRepository.fetchData(date: date, descending: descending)
+    func fetchData(date: String, descending: Bool) async throws -> [Article]  {
+        return try await articleRepository.fetchData(date: date, descending: descending)
     }
     
     func uploadArticle(data: [String : Any]) {

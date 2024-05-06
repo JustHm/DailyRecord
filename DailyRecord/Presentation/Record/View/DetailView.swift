@@ -70,6 +70,6 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(input: .init(), article: Article(documentID: nil,text: "HI HI", date: Date().toString(), weather: "sun.max.fill", imagesURL: []))
+        DetailView(input: .init(), article: Article(documentID: nil,text: "HI HI", date: Date().toString(), weather: .sunny, imagesURL: []))
     }
 }

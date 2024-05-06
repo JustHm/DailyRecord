@@ -11,5 +11,6 @@ protocol ArticleRepository {
     func uploadData(data: [String: Any])
     func updateData(dateWithoutDay: String, documentID: String, data: [String: Any])
     func deleteData(dateWithoutDay: String, documentID: String) async throws
-    func fetchData(date: String, descending: Bool) -> Future<[Article], Error>
+//    func fetchData(date: String, descending: Bool) -> Future<[Article], Error>
+    func fetchData(date: String, descending: Bool) async throws -> [Article]
 }
