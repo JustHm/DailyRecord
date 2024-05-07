@@ -7,32 +7,28 @@
 import Combine
 import Foundation
 
-protocol ArticleUseCase {
+protocol ArticleService {
     func fetchData(date: String, descending: Bool) async throws -> [Article]
-    func uploadArticle(data: [String: Any])
-    func updateArticle(dateWithoutDay: String, documentID: String, data: [String: Any])
+    func uploadArticle(data: Article)
+    func updateArticle(dateWithoutDay: String, documentID: String, data: Article)
     func deleteData(dateWithoutDay: String, documentID: String) async throws
 }
 
-class DefaultArticleUseCase: ArticleUseCase {
-    private let articleRepository: ArticleRepository
-    
-    init(articleRepository: ArticleRepository) {
-        self.articleRepository = articleRepository
-    }
+class DefaultArticleService: ArticleService {
+    private let articleRepository: ArticleRepository = DefaultArticleRepository()
     
     func fetchData(date: String, descending: Bool) async throws -> [Article]  {
         return try await articleRepository.fetchData(date: date, descending: descending)
     }
     
-    func uploadArticle(data: [String : Any]) {
-        articleRepository.uploadData(data: data)
+    func uploadArticle(data: Article) {
+        articleRepository.addData(data: data.dictionary)
     }
-    func updateArticle(dateWithoutDay: String, documentID: String, data: [String : Any]) {
+    func updateArticle(dateWithoutDay: String, documentID: String, data: Article) {
         articleRepository.updateData(
             dateWithoutDay: dateWithoutDay,
             documentID: documentID,
-            data: data
+            data: data.dictionary
         )
     }
     

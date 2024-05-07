@@ -10,15 +10,14 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-
-protocol FirestoreStorage {
+protocol ArticleRepository {
     func addData(data: [String: Any])
     func updateData(dateWithoutDay: String, documentID: String, data: [String: Any])
     func deleteData(dateWithoutDay: String, documentID: String) async throws
     func fetchData(date: String, descending: Bool) async throws -> [Article]
     
 }
-final class DefaultFirestroeStorage {
+final class DefaultArticleRepository {
     private let firestore: Firestore = Firestore.firestore()
     private let uid: String
     
@@ -26,7 +25,7 @@ final class DefaultFirestroeStorage {
         self.uid = Auth.auth().currentUser!.uid
     }
 }
-extension DefaultFirestroeStorage: FirestoreStorage {
+extension DefaultArticleRepository: ArticleRepository {
     
     func addData(data: [String: Any]) {
         firestore.collection("Records").document(uid)

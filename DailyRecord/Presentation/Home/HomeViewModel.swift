@@ -8,17 +8,13 @@ import Combine
 import Foundation
 
 final class HomeViewModel {
-    private let articleUseCase: ArticleUseCase
+    private let articleService: ArticleService = DefaultArticleService()
     
     private let output: PassthroughSubject<Output, Never> = .init()
     private var bag = Set<AnyCancellable>()
     
     private var currentDate: String = Date().toString(format: "yyyy.MM")
     private var sortFilter: Bool = true
-    
-    init(articleUseCase: ArticleUseCase) {
-        self.articleUseCase = articleUseCase
-    }
     
     func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
         input.receive(on: DispatchQueue.main)
@@ -60,7 +56,7 @@ final class HomeViewModel {
         output.send(.listFilter(date: currentDate))
         Task {
             do {
-                let list = try await articleUseCase.fetchData(date: currentDate,
+                let list = try await articleService.fetchData(date: currentDate,
                                                               descending: sortFilter
                 )
                 output.send(.setCellData(data: list))
@@ -76,13 +72,13 @@ final class HomeViewModel {
     func setData(article: Article) {
         if let id = article.documentID,
            let date = article.date.toDate()?.toString(format: "yyyy.MM") {
-            articleUseCase.updateArticle(dateWithoutDay: date,
+            articleService.updateArticle(dateWithoutDay: date,
                                          documentID: id,
-                                         data: article.dictionary
+                                         data: article
             )
         }
         else {
-            articleUseCase.uploadArticle(data: article.dictionary)
+            articleService.uploadArticle(data: article)
         }
         getData()
     }
@@ -95,7 +91,7 @@ final class HomeViewModel {
         }
         Task(priority: .background) {
             do {
-                try await articleUseCase.deleteData(dateWithoutDay: date,
+                try await articleService.deleteData(dateWithoutDay: date,
                                                     documentID: id
                 )
                 // 오늘자 기록을 지웠다면 다시 추가할 수 있게

@@ -34,7 +34,7 @@ final class ImageViewModel: ObservableObject {
             }
         }
     }
-    private let storage = DefaultImageStorage()
+    private let storage: StorageService = DefaultStorageService()
     
     func transferable() async throws {
         var images: [Data] = []
@@ -43,7 +43,7 @@ final class ImageViewModel: ObservableObject {
             else { continue }
             images.append(data)
         }
-        let result = try await storage.uploadImages(images)
+        let result = try await storage.uploadImages(image: images)
         imageUrl.append(contentsOf: result)
     }
 }
