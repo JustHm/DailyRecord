@@ -21,6 +21,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigation = UINavigationController(rootViewController: vc)
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
+        
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().tintColor = .white
+//        DispatchQueue.global().async {
+//                UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//                UINavigationBar.appearance().shadowImage = UIImage()
+//                UINavigationBar.appearance().isTranslucent = true
+//                UINavigationBar.appearance().tintColor = .white
+//            }
+        // https://sarunw.com/posts/how-to-make-transparent-navigation-bar-in-ios/
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

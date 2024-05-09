@@ -30,7 +30,7 @@ final class HomeViewModel {
                     self?.sortFilter.toggle()
                     self?.getData()
                 //여긴 HomeVC 아님
-                case .addArticle(let article):
+                case .setArticle(let article):
                     self?.setData(article: article)
                 case .deleteArticle(let article):
                     self?.deleteData(article: article)
@@ -115,7 +115,7 @@ extension HomeViewModel {
         case nextFilter
         case sortFilter
         // AddView만 사용
-        case addArticle(article: Article)
+        case setArticle(article: Article)
         // DetailView만 사용
         case deleteArticle(article: Article)
     }

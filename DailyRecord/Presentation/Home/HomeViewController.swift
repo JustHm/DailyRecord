@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var sortButton: UIButton!
     
-    private var viewModel: HomeViewModel!
+    private var viewModel: HomeViewModel = HomeViewModel()
     private let input: PassthroughSubject<HomeViewModel.Input, Never> = .init()
     private var bag = Set<AnyCancellable>()
     
@@ -75,7 +75,7 @@ class HomeViewController: UIViewController {
     @IBAction func addDiaryButtonTapped(_ sender: UIButton) {
         if let lastDate = UserDefaults.standard.string(forKey: "LastAddDate") {
             if Date().toString() == lastDate {
-                showAlert(msg: "You have already completed the record ")
+                showAlert(msg: "이미 오늘의 기록을 작성했습니다.\n삭제하시고 다시 작성하거나 수정할 수 있습니다.")
                 return
             }
         }
@@ -103,17 +103,18 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-//        let detailView = UIHostingController(rootView: DetailView(input: input, article: item))
-//        show(detailView, sender: nil)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        let detailView = UIHostingController(rootView: DetailView(input: input, article: item))
+        show(detailView, sender: nil)
+    }
 }
 
 extension HomeViewController {
     private func showAlert(msg: String) {
         let alert = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
-        present(alert, animated: true, completion: { self.dismiss(animated: true)})
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
     }
     
     private func setNavigationBar() {

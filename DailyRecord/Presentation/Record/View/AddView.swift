@@ -22,11 +22,12 @@ struct AddView: View {
                 
                 ImagePageView(viewModel: imageViewModel, articleDate: Date().toString())
                 
-                TextField("Input here", text: $text, axis: .vertical)
+                TextField("여기에 입력하세요.", text: $text, axis: .vertical)
                     .font(.body)
                     .lineSpacing(8.0)
                     .foregroundColor(.white)
                     .padding()
+                    .toolbarRole(.editor)
                 Spacer()
             }
         }
@@ -47,7 +48,7 @@ struct AddView: View {
                                            date: Date().toString(),
                                            weather: weather,
                                            imagesURL: imageViewModel.imageUrl)
-                        input.send(.addArticle(article: data))
+                        input.send(.setArticle(article: data))
                         UserDefaults.standard.set(Date().toString(), forKey: "LastAddDate")
                         dismiss()
                     }

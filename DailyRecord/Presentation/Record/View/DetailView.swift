@@ -22,19 +22,20 @@ struct DetailView: View {
                 
                 ImagePageView(viewModel: imageViewModel, articleDate: article.date)
                 
-                TextField("Input here", text: $article.text, axis: .vertical)
+                TextField("여기에 입력하세요.", text: $article.text, axis: .vertical)
                     .frame(maxWidth: .infinity, minHeight: 200.0 , maxHeight: .infinity)
                     .font(.body)
                     .lineSpacing(8.0)
                     .foregroundColor(.white)
+                    .toolbarRole(.editor)
                     .padding()
             }
         }
         .background(Color("CustomBackground"))
         .alert("Failed",
                isPresented: $showUpdateAlert,
-               actions: { Button("OK", action: {showUpdateAlert.toggle()}) },
-               message: { Text("You can only modify today's record") }
+               actions: { Button("확인", action: {showUpdateAlert.toggle()}) },
+               message: { Text("오늘의 기록만 수정할 수 있습니다!") }
         )
         .toolbar {
             ToolbarItem {
@@ -43,7 +44,7 @@ struct DetailView: View {
                         input.send(.deleteArticle(article: article))
                         dismiss()
                     } label: {
-                        Label("Delete", systemImage: "trash")
+                        Label("삭제", systemImage: "trash")
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")
@@ -62,7 +63,7 @@ struct DetailView: View {
         .onDisappear {
             if Date().toString() == article.date {
                 article.imagesURL = imageViewModel.imageUrl
-                input.send(.addArticle(article: article))
+                input.send(.setArticle(article: article))
             }
         }
     }
