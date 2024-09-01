@@ -1,28 +1,24 @@
 # DailyRecord
-당일만 기록할 수 있는 일기장 어플
+일기장 어플
+당일 이외의 기록은 삭제만 가능
 
-전 날 기록은 확인만 가능하고 수정 불가능, 
+Login, Home View만 StoryBoard 
+Detail, Add, Setting View는 SwiftUI로 작업
 
-당일 기록은 하루가 지나기 전 까지 이미지, 글, 날씨 변경 가능
-
-## Environment
+## 사용 기술
 - MVVM Architecture
 - StoryBoard + SwiftUI
-
-## Skills
 - Combine (Combine을 사용해 ViewModel과 View를 바인딩 하여 MVVM 적용)
 - PhotosUI
 - Swift Concurrency (async/await)
 - UICollectionViewDiffableDataSource
 
-## Library
+## 사용 라이브러리
 - Firebase Auth
 - Firebase Firestore
 - Firebase Storage
 
 ## Preview
-Login, Home View만 StoryBoard 
-Detail, Add, Setting 등 나머지는 SwiftUI View
 
 | Login | Home | Detail |
 | ------------- | ------------- | ------------- |
