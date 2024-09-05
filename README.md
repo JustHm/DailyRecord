@@ -2,13 +2,15 @@
 일기장 어플
 당일 이외의 기록은 삭제만 가능
 
-Login, Home View만 StoryBoard 
-Detail, Add, Setting View는 SwiftUI로 작업
+- 소셜 로그인 구현 (apple, google)
+- 이미지 업로드 구현
+- UIKit에 SwiftUI 화면 함께 사용 (Login, Home 뷰 제외, 나머지는 SwiftUI로 작업)
+- UIKit에 Combine을 사용해 MVVM 구조 적용
 
 ## 사용 기술
 - MVVM Architecture
 - StoryBoard + SwiftUI
-- Combine (Combine을 사용해 ViewModel과 View를 바인딩 하여 MVVM 적용)
+- Combine
 - PhotosUI
 - Swift Concurrency (async/await)
 - UICollectionViewDiffableDataSource
