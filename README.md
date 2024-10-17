@@ -3,9 +3,9 @@
 당일 이외의 기록은 삭제만 가능
 
 - 소셜 로그인 구현 (apple, google)
-- Friebase Storage, Firestore을 사용 이미지와 글을 따로 서버에 관리
-- UIKit에 SwiftUI 화면 함께 사용 (Login, Home 뷰 제외, 나머지는 SwiftUI로 작업)
-- UIKit에 Combine을 사용해 MVVM 구조 적용
+- Friebase Firestore, Storage 사용. 유저별로 작성한 일기를 Firestore에 저장 이미지는 Storage에 올리고 링크만 따로 Firestore에 저장 후 사용했습니다.
+- Storyboard SwiftUI 화면 함께 사용 (Login, Home 뷰 제외, 나머지는 SwiftUI로 작업)
+- UIKit에 Combine을 사용해 MVVM 구조 구현
 
 ## 사용 기술
 - MVVM Architecture
