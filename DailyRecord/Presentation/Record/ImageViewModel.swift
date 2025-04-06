@@ -19,7 +19,7 @@ final class ImageViewModel: ObservableObject {
     @Published var state: StorageState = .none
     @Published var imageUrl: [String] = []
     @Published var selectedItems: [PhotosPickerItem] = [] {
-        didSet {
+        didSet { #warning("Observing Property 에서 처리하지 말고 따로 분리하기")
             Task {
                 if !selectedItems.isEmpty {
                     do {
